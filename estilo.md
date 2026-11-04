@@ -93,3 +93,13 @@ Ninguna referencia tiene subtítulos. Para mi-video.mp4 (con voz) uso esta propu
 ## Correcciones del usuario (se añaden aquí y mandan sobre lo anterior)
 - Ignorar el outro de TikTok de las referencias.
 - **Formato por defecto: B ("Cinematic producto").** El usuario va a pasar vídeos detallados de producto del tipo del reloj plata con esfera azul. A queda solo como referencia secundaria.
+- **Música:** la de referencia-B (ambient instrumental, sin percusión), recortada a 0–12,27 s sin el outro, con fade-out de 0,5 s. Si el vídeo dura más, se hace loop con crossfade de 1 s.
+- **Selección de clips:** el usuario pasa muchos clips. Usar solo los necesarios (4 planos de 3,067 s por vídeo). No meter dos tomas parecidas en el mismo vídeo (mismo ángulo y mismo tipo de plano).
+- **Archivo de tomas:** los clips que sobran se guardan en `clips/biblioteca.json` como disponibles. Los usados se marcan con el vídeo en que salieron, para no repetir tomas parecidas en vídeos futuros.
+- **Gancho:** el primer plano es SIEMPRE el clip con más gancho: macro de la esfera con brillo especular, movimiento claro y el producto nítido en el primer frame.
+- **Iluminación/color:** el fondo negro de los clips es mejorable. Hay que llevarlos al look de B:
+  - Negros profundos y limpios: levels con negro a ~16/255 aplastado a 0 y sin ruido en el fondo.
+  - Contraste +20 %. Brillos especulares del metal realzados con un poco de claridad/nitidez.
+  - Saturación −20 % salvo el color de la esfera. Balance ligeramente frío (+azul en sombras).
+  - **Degradado de luz detrás del producto**, que imita el fondo grafito de B (#2A2C30 → #000): un radial suave desde arriba.
+  - Viñeta del 25 %.
