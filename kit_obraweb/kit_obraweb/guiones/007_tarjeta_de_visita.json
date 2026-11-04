@@ -1,0 +1,12 @@
+[
+ {"kind": "boom", "obj": "card", "h": ["TU TARJETA", "YA NO SIRVE"],
+  "text": "Tu tarjeta de visita ya no te consigue clientes.",
+  "cover": ["TU TARJETA", "DE VISITA", "*YA NO SIRVE", "esto sí funciona"]},
+ {"kind": "trash", "text": "Acaba en un cajón, o en la basura."},
+ {"kind": "secret", "h": ["TODOS LO LLEVAN", "EN EL BOLSILLO"], "text": "Pero hay algo que todos llevan en el bolsillo."},
+ {"kind": "phonepop", "text": "Su móvil.", "cut": true},
+ {"kind": "qr", "text": "Con un código QR, entran a tu web en un segundo.", "sub": "Con un código QR, entran a tu web en 1 segundo."},
+ {"kind": "showcase", "text": "Ven tus trabajos, tus opiniones, y te escriben."},
+ {"kind": "logo", "tag": "TU MEJOR TARJETA", "text": "En ObraWeb te creamos la web de principio a fin.", "cut": true},
+ {"kind": "dm", "text": "Escríbenos web por mensaje.", "sub": "Escríbenos «WEB» por mensaje."}
+]

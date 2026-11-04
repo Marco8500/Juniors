@@ -1,0 +1,11 @@
+[
+ {"kind": "boom", "obj": "e404", "h": ["¿CUÁNDO ENTRASTE", "EN TU WEB?"],
+  "text": "¿Cuándo fue la última vez que entraste en tu propia web?",
+  "cover": ["¿CUÁNDO FUE", "LA ÚLTIMA VEZ", "QUE ENTRASTE", "*EN TU WEB?"]},
+ {"kind": "visitors", "text": "Porque tus clientes sí entran."},
+ {"kind": "brokenlist", "text": "Y ven un horario viejo, un teléfono que no contesta, un enlace roto.", "cut": true},
+ {"kind": "silentbell", "text": "Y lo peor es que nadie te avisa."},
+ {"kind": "inspect", "text": "Así que hoy entra y mírala como un cliente.", "cut": true},
+ {"kind": "logo", "tag": "COMO NUEVA", "text": "Y si no te convence, en ObraWeb te la dejamos como nueva.", "cut": true},
+ {"kind": "dm", "text": "Escríbenos web por mensaje.", "sub": "Escríbenos «WEB» por mensaje."}
+]

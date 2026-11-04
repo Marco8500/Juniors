@@ -1,0 +1,220 @@
+{
+ "meta": {
+  "titulo": "Dos peluquerías en la misma calle: una llena, otra vacía",
+  "formato": "Situación hipotética + antes y después (formatos 4 y 3), con revelación final",
+  "objetivo": "retención → comentarios («¿cuál es la tuya?») → seguidores → DEMO",
+  "concepto": "Dos peluquerías idénticas en la misma calle: mismo precio, mismo servicio, mismas tijeras. Una siempre está llena y la otra vacía. El vídeo retrasa la respuesta: primero muestra lo que encuentra un cliente al buscarlas en el móvil (una solo tiene un teléfono; la otra tiene web con fotos, opiniones y botón de reserva), y cuando parece resuelto revela el detalle que lo cambia todo: un asistente con IA que da cita a las once de la noche. Cierra devolviendo la pregunta al espectador y con el regalo DEMO.",
+  "tecnicas": [
+   "Gancho con explosión en el primer segundo: la pantalla de un móvil con la búsqueda «peluquería cerca de mí» revienta en pedazos.",
+   "Paradoja inicial: dos negocios iguales con resultados opuestos. Genera la pregunta «¿por qué?» y se retrasa la respuesta.",
+   "Regalo anunciado justo después del gancho: «Al final de este vídeo, te daré un regalo».",
+   "Igualdades que entran una a una (mismo precio, mismo servicio, mismas tijeras): descartan explicaciones y aumentan la intriga.",
+   "Antes y después en paralelo: lo que encuentra el cliente de cada peluquería.",
+   "Falso final + interrupción de patrón: «Pero el detalle que lo cambia todo es otro».",
+   "Revelación visual: el chat con IA reserva una cita a las 23:00.",
+   "Pregunta directa al espectador («¿Y tu negocio, cuál de las dos es?»): provoca comentarios.",
+   "Recompensa clara en 3 pasos: el regalo, 1 sígueme · 2 comenta DEMO, y te la envío por mensaje."
+  ],
+  "cta": "«Y aquí va tu regalo: una demo gratis de cómo quedaría la web de tu negocio. Para conseguirla, haz dos cosas: 1, sígueme. 2, comenta DEMO. Y te la envío por mensaje, gratis y sin compromiso.»",
+  "recompensa": "Cada persona que comente DEMO recibe por mensaje directo una demo gratuita de la web de SU negocio, sin compromiso. Pedirle nombre y tipo de negocio y entregarla.",
+  "descripcion_ig": "Dos peluquerías en la misma calle ✂️\nMismo precio. Mismo servicio. Mismas tijeras.\nUna siempre llena… y la otra vacía.\n\n¿Por qué? La respuesta está en lo que encuentra un cliente cuando las busca en el móvil 📱 (y en el detalle del final 👀)\n\n👇 ¿Y tu negocio, cuál de las dos es? Te leo en comentarios.\n\n🎁 TU REGALO: una demo GRATIS de cómo quedaría la web de tu negocio.\nPara conseguirla:\n1️⃣ Sígueme\n2️⃣ Comenta DEMO\nY te la envío por mensaje, gratis y sin compromiso.",
+  "descripcion_tt": "Dos peluquerías iguales: una llena y otra vacía ✂️ ¿Por qué? 👀 🎁 Demo GRATIS de la web de tu negocio → 1️⃣ Sígueme 2️⃣ Comenta DEMO",
+  "hashtags": [
+   "#negocios",
+   "#emprendedores",
+   "#autonomos",
+   "#pymes",
+   "#negociolocal",
+   "#peluqueria",
+   "#paginaweb",
+   "#diseñoweb",
+   "#chatbot",
+   "#reservasonline",
+   "#marketingdigital",
+   "#clientes",
+   "#automatizacion",
+   "#obraweb"
+  ],
+  "hashtags_tt": [
+   "#negocios",
+   "#emprendedores",
+   "#peluqueria",
+   "#paginaweb",
+   "#chatbot",
+   "#obraweb",
+   "#fyp",
+   "#parati"
+  ]
+ },
+ "escenas": [
+  {
+   "kind": "boom",
+   "obj": "searchphone",
+   "h": [
+    "UNA LLENA",
+    "OTRA VACÍA"
+   ],
+   "text": "Dos peluquerías en la misma calle. Una siempre llena. La otra, vacía.",
+   "screen": "UNA LLENA · OTRA VACÍA",
+   "visual": "Un móvil con la búsqueda «peluquería cerca de mí» revienta a los 0,12 s. Al decir «una siempre llena» aparece la Peluquería A iluminada, con cartel ABIERTO y clientes comprando con bolsas; al decir «la otra, vacía» aparece la B a oscuras, con el dueño solo tras el mostrador, telarañas y polvo.",
+   "tecnica": "Gancho visual + paradoja que crea la pregunta «¿por qué?».",
+   "cover": [
+    "DOS PELUQUERÍAS",
+    "UNA LLENA",
+    "*OTRA VACÍA",
+    "¿por qué?"
+   ],
+   "after": "shops",
+   "marks": [
+    0.45,
+    0.75
+   ]
+  },
+  {
+   "kind": "giftpromise",
+   "h": "TE DARÉ UN REGALO",
+   "text": "Y al final de este vídeo, te daré un regalo.",
+   "screen": "AL FINAL · TE DARÉ UN REGALO",
+   "visual": "Caja de regalo naranja cerrada que tiembla, con la etiqueta «AL FINAL».",
+   "tecnica": "Recompensa anunciada al principio."
+  },
+  {
+   "kind": "twins",
+   "names": [
+    "PELUQ. A",
+    "PELUQ. B"
+   ],
+   "items": [
+    "MISMO PRECIO",
+    "MISMO SERVICIO",
+    "MISMAS TIJERAS"
+   ],
+   "cut": true,
+   "text": "Mismo precio. Mismo servicio. Mismas tijeras.",
+   "screen": "= MISMO PRECIO · = MISMO SERVICIO · = MISMAS TIJERAS",
+   "visual": "Las dos peluquerías lado a lado; entran las igualdades con su icono al decirlas: etiqueta (mismo precio), sillón de peluquería (mismo servicio) y tijeras (mismas tijeras).",
+   "tecnica": "Descarta las explicaciones obvias y aumenta la intriga.",
+   "icons": [
+    "tag",
+    "chair",
+    "scissors"
+   ]
+  },
+  {
+   "kind": "secret",
+   "h": [
+    "¿QUÉ LAS HACE",
+    "DISTINTAS?"
+   ],
+   "text": "Entonces, ¿qué las hace tan distintas?",
+   "screen": "¿QUÉ LAS HACE DISTINTAS?",
+   "visual": "Caja con «?» brillando.",
+   "tecnica": "Pregunta explícita que el espectador necesita resolver."
+  },
+  {
+   "kind": "bare",
+   "name": "Peluquería B",
+   "h": "SOLO UN TELÉFONO",
+   "cut": true,
+   "text": "Cuando alguien busca la segunda, solo encuentra un teléfono.",
+   "screen": "SOLO UN TELÉFONO · CERRADO AHORA",
+   "visual": "Ficha en el móvil de la Peluquería B: solo un teléfono, sin fotos ni opiniones, y aparece «Cerrado ahora» en rojo.",
+   "tecnica": "Primera mitad del antes y después: el problema, visto."
+  },
+  {
+   "kind": "showcase",
+   "labels": [
+    "FOTOS DE CORTES",
+    "OPINIONES",
+    "RESERVAR"
+   ],
+   "cut": true,
+   "text": "La primera tiene web: fotos de sus cortes, opiniones, y un botón para reservar.",
+   "screen": "FOTOS DE CORTES · OPINIONES · RESERVAR",
+   "visual": "Tres tarjetas que entran justo cuando se nombra cada cosa: galería de fotos, estrellas y botón de reserva.",
+   "tecnica": "Segunda mitad del antes y después: la solución, vista."
+  },
+  {
+   "kind": "secret",
+   "h": [
+    "EL DETALLE QUE",
+    "LO CAMBIA TODO"
+   ],
+   "text": "Pero el detalle que lo cambia todo es otro.",
+   "screen": "EL DETALLE QUE LO CAMBIA TODO",
+   "visual": "Caja con «?» brillando.",
+   "tecnica": "Falso final + interrupción de patrón: cuando parecía resuelto, una puerta más."
+  },
+  {
+   "kind": "chatbot",
+   "h": "RESERVA A LAS 23:00",
+   "msgs": [
+    "¿Tenéis hueco el sábado?",
+    "Sí, a las 11:00. ¿Te reservo?",
+    "Cita confirmada"
+   ],
+   "cut": true,
+   "text": "Un asistente con inteligencia artificial que da citas a las once de la noche.",
+   "sub": "Un asistente con inteligencia artificial que da citas a las 23:00.",
+   "screen": "RESERVA A LAS 23:00",
+   "visual": "Chat en el móvil a las 23:41: el cliente pregunta, el asistente escribe y responde, y aparece «Cita confirmada».",
+   "tecnica": "Revelación principal (chatbot + reservas), vista en acción."
+  },
+  {
+   "kind": "verdict",
+   "names": [
+    "PELUQ. A",
+    "PELUQ. B"
+   ],
+   "text": "Por eso una está llena. Y la otra, vacía.",
+   "screen": "LLENA · VACÍA",
+   "visual": "La Peluquería A iluminada y llena de clientes comprando (LLENA); al decir «la otra, vacía» aparece la B a oscuras con el dueño solo y telarañas (VACÍA).",
+   "tecnica": "Cierre del bucle del gancho: se responde por fin la pregunta inicial."
+  },
+  {
+   "kind": "secret",
+   "h": [
+    "¿Y TU NEGOCIO,",
+    "CUÁL ES?"
+   ],
+   "text": "¿Y tu negocio, cuál de las dos es?",
+   "screen": "¿Y TU NEGOCIO, CUÁL ES?",
+   "visual": "Caja con «?» brillando.",
+   "tecnica": "Pregunta directa al espectador: provoca comentarios."
+  },
+  {
+   "kind": "gift",
+   "reveal": "DEMO GRATIS",
+   "h": "TU REGALO",
+   "cut": true,
+   "text": "Y aquí va tu regalo: una demo gratis de cómo quedaría la web de tu negocio.",
+   "screen": "TU REGALO · DEMO GRATIS",
+   "visual": "La caja de regalo se abre y sale una web de ejemplo con la etiqueta «DEMO GRATIS».",
+   "tecnica": "Se cumple la promesa del principio."
+  },
+  {
+   "kind": "steps",
+   "h": "CÓMO CONSEGUIRLA",
+   "marks": [
+    0.42,
+    0.72
+   ],
+   "text": "Para conseguirla, haz dos cosas: uno, sígueme. Dos, comenta demo.",
+   "sub": "Para conseguirla, haz 2 cosas: 1, sígueme. 2, comenta DEMO.",
+   "screen": "CÓMO CONSEGUIRLA · 1 SÍGUEME · 2 COMENTA «DEMO»",
+   "visual": "Paso 1 con botón «Seguir» → «Siguiendo»; paso 2 con un comentario donde se escribe «DEMO».",
+   "tecnica": "CTA en pasos numerados, imposible de malinterpretar."
+  },
+  {
+   "kind": "delivery",
+   "tags": [
+    "GRATIS",
+    "SIN COMPROMISO"
+   ],
+   "text": "Y te la envío por mensaje. Gratis y sin compromiso.",
+   "screen": "GRATIS · SIN COMPROMISO",
+   "visual": "Llega un mensaje de ObraWeb: «¡Aquí tienes tu demo!» con la web dentro del chat.",
+   "tecnica": "Elimina la duda («¿y luego qué?») y reduce el riesgo percibido."
+  }
+ ]
+}

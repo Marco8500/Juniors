@@ -1,0 +1,184 @@
+{
+ "meta": {
+  "titulo": "Estás perdiendo clientes por algo que no has tenido en cuenta",
+  "formato": "Storytelling con cadena de curiosidad y revelación final (formato 1 + 7)",
+  "objetivo": "retención → seguidores → comentarios DEMO",
+  "concepto": "Un dueño de negocio pierde clientes sin saberlo. El vídeo descarta primero lo obvio (precios, competencia), revela que el problema está en Google, y cuando parece que ya está todo dicho abre una puerta nueva: que te contacten aunque estés cerrado (chatbot con IA y reservas). Termina con una recompensa real: una demo gratis de la web de su negocio.",
+  "tecnicas": [
+   "Gancho con explosión en el primer segundo (la hucha del negocio revienta) + afirmación inquietante en segunda persona.",
+   "Falsa pista y revelación: «No es por tus precios. Ni por tu competencia» descarta lo obvio y obliga a esperar la causa real.",
+   "Cadena de curiosidad: cada escena abre una pregunta nueva antes de cerrar la anterior (Google → otro negocio → «algo todavía más interesante» → cerrado → IA).",
+   "Interrupción de patrón: cuando el problema parece resuelto, giro hacia una idea nueva (clientes que te contactan cerrado).",
+   "Recompensa anunciada al principio («al final de este vídeo te daré un regalo») y entregada al final con pasos claros: 1 sígueme, 2 comenta DEMO.",
+   "Todo lo que se dice se ve: un plano por frase, sincronizado con la voz, cambio visual cada 2-3 s.",
+   "Subtítulos dinámicos con la palabra clave en naranja y titulares grandes que refuerzan la idea."
+  ],
+  "cta": "«Y aquí va tu regalo: una demo gratis de cómo quedaría la web de tu negocio. Para conseguirla, haz dos cosas: 1, sígueme. 2, comenta DEMO. Y te la envío por mensaje, gratis y sin compromiso.»",
+  "recompensa": "Cada persona que comente DEMO recibe por mensaje directo una demo gratuita de cómo quedaría la web de SU negocio, sin compromiso. Hay que pedirle nombre y tipo de negocio y entregarla de verdad.",
+  "descripcion_ig": "Tu negocio podría estar perdiendo clientes por algo que seguramente no has tenido en cuenta 👀\n\nNo es por tus precios. Ni por tu competencia.\nEs por lo que pasa cuando alguien te busca en Google… y por lo que pasa cuando estás cerrado 🌙\n\n🎁 TU REGALO: una demo GRATIS de cómo quedaría la web de tu negocio.\nPara conseguirla:\n1️⃣ Sígueme\n2️⃣ Comenta DEMO\nY te la envío por mensaje, gratis y sin compromiso.",
+  "descripcion_tt": "Estás perdiendo clientes por algo que no has tenido en cuenta 👀 🎁 Regalo: demo GRATIS de la web de tu negocio → 1️⃣ Sígueme 2️⃣ Comenta DEMO",
+  "hashtags": [
+   "#negocios",
+   "#emprendedores",
+   "#autonomos",
+   "#pymes",
+   "#negociolocal",
+   "#paginaweb",
+   "#diseñoweb",
+   "#chatbot",
+   "#inteligenciaartificial",
+   "#automatizacion",
+   "#marketingdigital",
+   "#clientes",
+   "#reservasonline",
+   "#obraweb"
+  ],
+  "hashtags_tt": [
+   "#negocios",
+   "#emprendedores",
+   "#autonomos",
+   "#paginaweb",
+   "#chatbot",
+   "#obraweb",
+   "#fyp",
+   "#parati"
+  ]
+ },
+ "escenas": [
+  {
+   "kind": "boom",
+   "obj": "piggy",
+   "h": [
+    "ESTÁS PERDIENDO",
+    "CLIENTES"
+   ],
+   "text": "Tu negocio podría estar perdiendo clientes por algo que seguramente no has tenido en cuenta.",
+   "screen": "ESTÁS PERDIENDO CLIENTES",
+   "visual": "Una hucha naranja con el símbolo € revienta en pedazos a los 0,12 s (destello, onda expansiva, sacudida, sonido de golpe). Clientes huyendo a los lados.",
+   "tecnica": "Gancho visual brutal + afirmación inquietante en segunda persona.",
+   "cover": [
+    "ESTÁS",
+    "PERDIENDO",
+    "*CLIENTES",
+    "y no lo sabes"
+   ]
+  },
+  {
+   "kind": "giftpromise",
+   "h": "TE DARÉ UN REGALO",
+   "text": "Y al final de este vídeo, te daré un regalo.",
+   "screen": "AL FINAL · TE DARÉ UN REGALO",
+   "visual": "Caja de regalo naranja cerrada que tiembla, con la etiqueta «AL FINAL».",
+   "tecnica": "Recompensa anunciada al principio: motivo explícito para ver hasta el final."
+  },
+  {
+   "kind": "notthis",
+   "items": [
+    "TUS PRECIOS",
+    "TU COMPETENCIA"
+   ],
+   "h": "NO ES POR…",
+   "text": "No es por tus precios. Ni por tu competencia.",
+   "screen": "NO ES POR… TUS PRECIOS ✗ / TU COMPETENCIA ✗",
+   "visual": "Dos tarjetas que entran al ritmo de la voz y se tachan con una línea roja.",
+   "tecnica": "Falsa pista: descarta lo obvio y retrasa la causa real."
+  },
+  {
+   "kind": "nightsearch",
+   "query": "tu negocio cerca de mí",
+   "h": "¿QUÉ ENCUENTRA?",
+   "cut": true,
+   "text": "Es por lo que pasa cuando alguien te busca en Google.",
+   "screen": "¿QUÉ ENCUENTRA?",
+   "visual": "Un móvil escribe «tu negocio cerca de mí» y salta un interrogante naranja.",
+   "tecnica": "Nuevo interrogante: ¿qué ve el cliente?"
+  },
+  {
+   "kind": "other",
+   "h": "ELIGE A OTRO",
+   "text": "Si no encuentra tus servicios, tus fotos, y cómo contactarte, elige a otro.",
+   "screen": "ELIGE A OTRO",
+   "visual": "Tu tienda con la persiana bajada; la de al lado se enciende y el cliente camina hacia ella.",
+   "tecnica": "Desarrollo corto y visual de la consecuencia."
+  },
+  {
+   "kind": "secret",
+   "h": [
+    "PERO HAY ALGO",
+    "MÁS INTERESANTE"
+   ],
+   "text": "Pero hay algo todavía más interesante.",
+   "screen": "PERO HAY ALGO MÁS INTERESANTE",
+   "visual": "Una caja con «?» brillando en naranja.",
+   "tecnica": "Interrupción de patrón: cuando parecía cerrado, se abre una puerta nueva."
+  },
+  {
+   "kind": "clock",
+   "h": "Y TE ESCRIBEN",
+   "cut": true,
+   "text": "Que te contacten incluso cuando estás cerrado.",
+   "screen": "Y TE ESCRIBEN (23:00 · CERRADO)",
+   "visual": "Reloj a las 23:00 y la persiana de tu negocio bajando.",
+   "tecnica": "Promesa concreta que genera la pregunta «¿cómo?»."
+  },
+  {
+   "kind": "chatbot",
+   "h": "RESPONDE POR TI",
+   "msgs": [
+    "¿Tenéis hueco mañana?",
+    "¡Sí! Te reservo a las 10:00",
+    "Reserva confirmada"
+   ],
+   "text": "Un asistente con inteligencia artificial responde por ti, y les reserva cita.",
+   "screen": "RESPONDE POR TI",
+   "visual": "Chat en el móvil: un cliente pregunta, el asistente escribe (puntos animados), responde y aparece «Reserva confirmada».",
+   "tecnica": "Revelación: la solución, explicada en una frase y vista en acción."
+  },
+  {
+   "kind": "morning",
+   "h": "CITA NUEVA",
+   "notif": [
+    "Nueva cita",
+    "Mañana a las 10:00"
+   ],
+   "text": "Y tú te levantas con una cita nueva.",
+   "screen": "CITA NUEVA",
+   "visual": "Amanece, el reloj marca las 8:00 y llega la notificación «Nueva cita · Mañana a las 10:00».",
+   "tecnica": "Beneficio emocional y cierre del bucle de la noche."
+  },
+  {
+   "kind": "gift",
+   "reveal": "DEMO GRATIS",
+   "h": "TU REGALO",
+   "cut": true,
+   "text": "Y aquí va tu regalo: una demo gratis de cómo quedaría la web de tu negocio.",
+   "screen": "TU REGALO · DEMO GRATIS",
+   "visual": "La caja de regalo se abre y sale una web de ejemplo con la etiqueta «DEMO GRATIS».",
+   "tecnica": "Se cumple la promesa del principio: el regalo se revela con claridad."
+  },
+  {
+   "kind": "steps",
+   "h": "CÓMO CONSEGUIRLA",
+   "marks": [
+    0.42,
+    0.72
+   ],
+   "text": "Para conseguirla, haz dos cosas: uno, sígueme. Dos, comenta demo.",
+   "sub": "Para conseguirla, haz 2 cosas: 1, sígueme. 2, comenta DEMO.",
+   "screen": "CÓMO CONSEGUIRLA · 1 SÍGUEME · 2 COMENTA «DEMO»",
+   "visual": "Dos pasos numerados: el 1 con un botón «Seguir» que pasa a «Siguiendo»; el 2 con un comentario donde se escribe «DEMO».",
+   "tecnica": "CTA en pasos numerados, imposible de malinterpretar."
+  },
+  {
+   "kind": "delivery",
+   "tags": [
+    "GRATIS",
+    "SIN COMPROMISO"
+   ],
+   "text": "Y te la envío por mensaje. Gratis y sin compromiso.",
+   "screen": "GRATIS · SIN COMPROMISO",
+   "visual": "Llega un mensaje de ObraWeb: «¡Aquí tienes tu demo!» con la web de ejemplo dentro del chat.",
+   "tecnica": "Elimina la duda («¿y luego qué?») y reduce el riesgo percibido."
+  }
+ ]
+}

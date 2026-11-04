@@ -1,0 +1,196 @@
+{
+ "meta": {
+  "titulo": "Nadie busca el nombre de tu negocio",
+  "formato": "Secreto que los empresarios desconocen (formato 6) + afirmación inesperada (formato 8)",
+  "objetivo": "retención → comentarios («¿qué escribiría un cliente?») → seguidores → DEMO",
+  "concepto": "Una afirmación inesperada («nadie busca el nombre de tu negocio») que revela cómo buscan de verdad los clientes: no escriben «Electricidad Pérez», escriben «electricista cerca de mí». Google les enseña a quien explica eso en su web; si tu web no dice qué haces y dónde, no apareces. Y como giro final, un detalle que casi nadie aprovecha: una página para cada servicio.",
+  "tecnicas": [
+   "Gancho con explosión en el primer segundo: el letrero «ELECTRICIDAD PÉREZ» revienta en pedazos.",
+   "Afirmación inesperada que choca con lo que el dueño cree («mi nombre es mi marca»).",
+   "Regalo anunciado justo después del gancho: «Al final de este vídeo, te daré un regalo».",
+   "Promesa de secreto: «el secreto que muchos negocios no saben».",
+   "Contraste literal: se escribe «Electricidad Pérez» y se tacha (✗); se escribe «electricista cerca de mí» y sale ✓.",
+   "Demostración: resultados de Google donde salen otros y «Electricidad Pérez: no sale».",
+   "Falso final + interrupción de patrón: «Pero hay un detalle más que casi nadie aprovecha».",
+   "Revelación con valor práctico: una página por servicio, cada una conectada a su búsqueda.",
+   "Pregunta al espectador («¿Qué escribiría un cliente para encontrarte?») para provocar comentarios.",
+   "Recompensa clara en 3 pasos: el regalo, 1 sígueme · 2 comenta DEMO, y te la envío por mensaje."
+  ],
+  "cta": "«Y aquí va tu regalo: una demo gratis de cómo quedaría la web de tu negocio. Para conseguirla, haz dos cosas: 1, sígueme. 2, comenta DEMO. Y te la envío por mensaje, gratis y sin compromiso.»",
+  "recompensa": "Cada persona que comente DEMO recibe por mensaje directo una demo gratuita de la web de SU negocio, sin compromiso. Pedirle nombre y tipo de negocio y entregarla.",
+  "descripcion_ig": "Nadie busca el nombre de tu negocio 🤯\n\nTus clientes no escriben «Electricidad Pérez».\nEscriben «electricista cerca de mí» 📱\n\nY Google les enseña a quien explica eso en su web. Si la tuya no dice qué haces y dónde… no apareces.\n\n💡 El detalle que casi nadie aprovecha: una página para cada servicio.\n\n👇 ¿Qué escribiría un cliente para encontrarte? Te leo.\n\n🎁 TU REGALO: una demo GRATIS de cómo quedaría la web de tu negocio.\nPara conseguirla:\n1️⃣ Sígueme\n2️⃣ Comenta DEMO\nY te la envío por mensaje, gratis y sin compromiso.",
+  "descripcion_tt": "Nadie busca el nombre de tu negocio 🤯 Buscan «electricista cerca de mí» 📱 🎁 Demo GRATIS de la web de tu negocio → 1️⃣ Sígueme 2️⃣ Comenta DEMO",
+  "hashtags": [
+   "#negocios",
+   "#emprendedores",
+   "#autonomos",
+   "#pymes",
+   "#negociolocal",
+   "#seo",
+   "#seolocal",
+   "#google",
+   "#paginaweb",
+   "#diseñoweb",
+   "#marketingdigital",
+   "#clientes",
+   "#electricista",
+   "#obraweb"
+  ],
+  "hashtags_tt": [
+   "#negocios",
+   "#emprendedores",
+   "#autonomos",
+   "#seo",
+   "#paginaweb",
+   "#obraweb",
+   "#fyp",
+   "#parati"
+  ]
+ },
+ "escenas": [
+  {
+   "kind": "boom",
+   "obj": "nameplate",
+   "h": [
+    "NADIE BUSCA",
+    "TU NOMBRE"
+   ],
+   "text": "Nadie busca el nombre de tu negocio.",
+   "screen": "NADIE BUSCA TU NOMBRE",
+   "visual": "El letrero colgante «ELECTRICIDAD PÉREZ» revienta en pedazos a los 0,12 s; después aparece la búsqueda «Electricidad Pérez» con un contador que cae hasta «0 BÚSQUEDAS» en rojo.",
+   "tecnica": "Gancho visual + afirmación inesperada.",
+   "cover": [
+    "NADIE BUSCA",
+    "EL NOMBRE DE",
+    "*TU NEGOCIO",
+    "esto es lo que buscan"
+   ],
+   "after": "search0",
+   "query0": "Electricidad Pérez"
+  },
+  {
+   "kind": "giftpromise",
+   "h": "TE DARÉ UN REGALO",
+   "text": "Y al final de este vídeo, te daré un regalo.",
+   "screen": "AL FINAL · TE DARÉ UN REGALO",
+   "visual": "Caja de regalo naranja cerrada que tiembla, con la etiqueta «AL FINAL».",
+   "tecnica": "Recompensa anunciada al principio."
+  },
+  {
+   "kind": "secret",
+   "h": [
+    "EL SECRETO QUE",
+    "POCOS SABEN"
+   ],
+   "text": "Y este es el secreto que muchos negocios no saben.",
+   "screen": "EL SECRETO QUE POCOS SABEN",
+   "visual": "Caja con «?» brillando.",
+   "tecnica": "Promesa de secreto (curiosidad)."
+  },
+  {
+   "kind": "typesearch",
+   "query": "Electricidad Pérez",
+   "ok": false,
+   "h": "LO QUE NO ESCRIBEN",
+   "cut": true,
+   "text": "Tus clientes no escriben: Electricidad Pérez.",
+   "screen": "LO QUE NO ESCRIBEN · «Electricidad Pérez» ✗",
+   "visual": "En la barra de Google se escribe «Electricidad Pérez», se tacha con una línea roja y aparece una ✗ roja.",
+   "tecnica": "Contraste: se descarta la idea equivocada."
+  },
+  {
+   "kind": "typesearch",
+   "query": "electricista cerca de mí",
+   "ok": true,
+   "h": "LO QUE SÍ ESCRIBEN",
+   "text": "Escriben: electricista cerca de mí.",
+   "screen": "LO QUE SÍ ESCRIBEN · «electricista cerca de mí» ✓",
+   "visual": "En la barra de Google se escribe «electricista cerca de mí» y aparece un ✓ verde.",
+   "tecnica": "Revelación del secreto, vista."
+  },
+  {
+   "kind": "results",
+   "query": "electricista cerca de mí",
+   "missing": "Electricidad Pérez: no sale",
+   "cut": true,
+   "text": "Y Google les enseña a quien explica eso en su web.",
+   "screen": "Resultados · «Electricidad Pérez: no sale»",
+   "visual": "Resultados de Google: Electricidad García (destacado, «Electricista en tu zona · Web»), Instalaciones Ruiz, Electro Sur… y aparece en rojo «Electricidad Pérez: no sale».",
+   "tecnica": "Demostración de la consecuencia."
+  },
+  {
+   "kind": "vagueweb",
+   "brand": "ELECTRICIDAD PÉREZ",
+   "h": "NO APARECES",
+   "text": "Si tu web no dice qué haces, y dónde, no apareces.",
+   "screen": "¿QUÉ HACES? · ¿DÓNDE? · NO APARECES",
+   "visual": "La web de Electricidad Pérez solo dice «Bienvenidos a nuestra web»; se marcan en rojo dos huecos vacíos: «¿QUÉ HACES?» y «¿DÓNDE?».",
+   "tecnica": "El problema del espectador, visto en su propia web."
+  },
+  {
+   "kind": "secret",
+   "h": [
+    "UN DETALLE QUE",
+    "NADIE APROVECHA"
+   ],
+   "text": "Pero hay un detalle más que casi nadie aprovecha.",
+   "screen": "UN DETALLE QUE NADIE APROVECHA",
+   "visual": "Caja con «?» brillando.",
+   "tecnica": "Falso final + interrupción de patrón."
+  },
+  {
+   "kind": "servicepages",
+   "h": "MÁS BÚSQUEDAS",
+   "cut": true,
+   "text": "Una página para cada servicio. Así puedes aparecer en muchas más búsquedas.",
+   "screen": "Una página por servicio · MÁS BÚSQUEDAS",
+   "visual": "Aparecen tres páginas de la web (Instalaciones, Averías urgentes, Boletines), cada una conectada con una flecha a la búsqueda que la encuentra («instalación eléctrica», «electricista urgente», «boletín eléctrico»).",
+   "tecnica": "Revelación con valor práctico (genera guardados)."
+  },
+  {
+   "kind": "secret",
+   "h": [
+    "¿QUÉ ESCRIBIRÍAN",
+    "PARA ENCONTRARTE?"
+   ],
+   "text": "¿Qué escribiría un cliente para encontrarte?",
+   "screen": "¿QUÉ ESCRIBIRÍAN PARA ENCONTRARTE?",
+   "visual": "Caja con «?» brillando.",
+   "tecnica": "Pregunta directa al espectador: provoca comentarios."
+  },
+  {
+   "kind": "gift",
+   "reveal": "DEMO GRATIS",
+   "h": "TU REGALO",
+   "cut": true,
+   "text": "Y aquí va tu regalo: una demo gratis de cómo quedaría la web de tu negocio.",
+   "screen": "TU REGALO · DEMO GRATIS",
+   "visual": "La caja de regalo se abre y sale una web de ejemplo con la etiqueta «DEMO GRATIS».",
+   "tecnica": "Se cumple la promesa del principio."
+  },
+  {
+   "kind": "steps",
+   "h": "CÓMO CONSEGUIRLA",
+   "marks": [
+    0.42,
+    0.72
+   ],
+   "text": "Para conseguirla, haz dos cosas: uno, sígueme. Dos, comenta demo.",
+   "sub": "Para conseguirla, haz 2 cosas: 1, sígueme. 2, comenta DEMO.",
+   "screen": "CÓMO CONSEGUIRLA · 1 SÍGUEME · 2 COMENTA «DEMO»",
+   "visual": "Paso 1 con botón «Seguir» → «Siguiendo»; paso 2 con un comentario donde se escribe «DEMO».",
+   "tecnica": "CTA en pasos numerados, imposible de malinterpretar."
+  },
+  {
+   "kind": "delivery",
+   "tags": [
+    "GRATIS",
+    "SIN COMPROMISO"
+   ],
+   "text": "Y te la envío por mensaje. Gratis y sin compromiso.",
+   "screen": "GRATIS · SIN COMPROMISO",
+   "visual": "Llega un mensaje de ObraWeb: «¡Aquí tienes tu demo!» con la web dentro del chat.",
+   "tecnica": "Elimina la duda («¿y luego qué?») y reduce el riesgo percibido."
+  }
+ ]
+}

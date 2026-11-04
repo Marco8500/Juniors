@@ -1,0 +1,12 @@
+[
+ {"kind": "boom", "obj": "stopwatch", "h": ["3 SEGUNDOS", "PARA CONVENCER"],
+  "text": "Tienes tres segundos para que un cliente confíe en ti.", "sub": "Tienes 3 segundos para que un cliente confíe en ti.",
+  "cover": ["TIENES", "*3 SEGUNDOS", "PARA QUE UN CLIENTE", "CONFÍE EN TI"]},
+ {"kind": "countdown", "text": "Es lo que tarda en mirar tu web y decidir."},
+ {"kind": "three", "title": "3 COSAS", "label": "¿LA TERCERA?", "text": "Y se fija en tres cosas. La tercera casi nadie la cuida.", "sub": "Y se fija en 3 cosas. La tercera casi nadie la cuida."},
+ {"kind": "photos", "text": "Una: fotos reales de tu trabajo.", "sub": "1: fotos reales de tu trabajo.", "cut": true},
+ {"kind": "goodmobile", "text": "Dos: que se vea bien en el móvil, sin hacer zoom.", "sub": "2: que se vea bien en el móvil, sin hacer zoom.", "cut": true},
+ {"kind": "button", "text": "Y tres: un botón claro para escribirte.", "sub": "Y 3: un botón claro para escribirte.", "cut": true},
+ {"kind": "logo", "tag": "LAS 3, DESDE EL DÍA 1", "text": "En ObraWeb cuidamos las tres desde el primer día.", "cut": true},
+ {"kind": "dm", "text": "Escríbenos web por mensaje.", "sub": "Escríbenos «WEB» por mensaje."}
+]

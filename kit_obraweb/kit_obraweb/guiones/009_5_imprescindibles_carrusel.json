@@ -1,0 +1,17 @@
+[
+ {"type": "cover", "title": "La web de tu negocio NECESITA esto", "hl": ["necesita"], "big": "5 COSAS",
+  "sub": "Si le falta la 5ª, pierdes clientes cada día"},
+ {"type": "sign", "num": 1, "badge": "Nº 1", "ill": "button", "title": "Un botón para escribirte", "hl": ["botón"],
+  "body": "Grande, visible y a un clic. Si tienen que buscarlo, no te escriben.", "next": "La 2ª genera confianza"},
+ {"type": "sign", "num": 2, "badge": "Nº 2", "ill": "photos", "title": "Fotos reales de tu trabajo", "hl": ["reales"],
+  "body": "Nada de fotos de catálogo: enseña lo que haces tú.", "next": "La 3ª evita llamadas perdidas"},
+ {"type": "sign", "num": 3, "badge": "Nº 3", "ill": "hours", "title": "Horario y cómo llegar", "hl": ["horario"],
+  "body": "Que nadie tenga que preguntarte cuándo abres ni dónde estás.", "next": "La 4ª convence sola"},
+ {"type": "sign", "num": 4, "badge": "Nº 4", "ill": "reviews", "title": "Opiniones de clientes", "hl": ["opiniones"],
+  "body": "Lo que dicen otros vende más que lo que dices tú.", "next": "Y la 5ª es la más olvidada"},
+ {"type": "sign", "num": 5, "badge": "Nº 5", "ill": "fastphone", "title": "Rápida en el móvil", "hl": ["rápida", "móvil"],
+  "body": "La mayoría te visita desde el móvil. Si tarda o se ve mal, se va.", "next": ""},
+ {"type": "cta", "title": "¿Cuántas tiene tu web?", "hl": ["cuántas"],
+  "body": "Si le falta alguna, te la creamos completa en ObraWeb, de principio a fin.",
+  "save": "Guárdalo para revisar tu web"}
+]

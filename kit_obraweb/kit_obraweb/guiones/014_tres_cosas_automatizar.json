@@ -1,0 +1,196 @@
+{
+ "meta": {
+  "titulo": "3 cosas que tu negocio puede automatizar mañana mismo",
+  "formato": "Lista con la última recomendación más potente (formato 5) + problema cotidiano → solución (formato 7)",
+  "objetivo": "retención → guardados → seguidores → DEMO",
+  "concepto": "Una lista de 3 automatizaciones sencillas que cualquier negocio puede poner en marcha: recordar las citas, pedir opiniones y que la web capte clientes por ti. Se anuncia desde el principio que la tercera es la que más horas ahorra, y se retrasa hasta el final. Cada punto se enseña con el problema real (silla vacía, «no vino») y la solución funcionando.",
+  "tecnicas": [
+   "Gancho con explosión en el primer segundo: una agenda de papel llena de tachones y notas revienta.",
+   "Promesa de lista con la mejor al final: «y la tercera te va a ahorrar horas».",
+   "Regalo anunciado justo después del gancho: «Al final de este vídeo, te daré un regalo».",
+   "Cada punto con el problema y la solución vistos literalmente: silla vacía con «NO VINO» → recordatorio → silla ocupada.",
+   "Bucles entre puntos: «Pero la segunda te trae más clientes» y «Y la tercera es la que más horas te ahorra» (caja 3 con candado).",
+   "Revelación de la tercera con demostración: formulario que se rellena solo y «Nuevo cliente» que llega al móvil a las 23:14.",
+   "Pregunta al espectador («¿Cuál pondrías primero en tu negocio?») para provocar comentarios.",
+   "Recompensa clara en 3 pasos: el regalo, 1 sígueme · 2 comenta DEMO, y te la envío por mensaje."
+  ],
+  "cta": "«Y aquí va tu regalo: una demo gratis de cómo quedaría la web de tu negocio. Para conseguirla, haz dos cosas: 1, sígueme. 2, comenta DEMO. Y te la envío por mensaje, gratis y sin compromiso.»",
+  "recompensa": "Cada persona que comente DEMO recibe por mensaje directo una demo gratuita de la web de SU negocio, sin compromiso. Pedirle nombre y tipo de negocio y entregarla.",
+  "descripcion_ig": "3 cosas que tu negocio puede automatizar mañana mismo ⚙️ (la tercera te ahorra horas)\n\n1️⃣ Recordar las citas → se acabaron los «no vino»\n2️⃣ Pedir opiniones → al terminar, le llega el mensaje solo\n3️⃣ Que tu web capte clientes por ti → rellenan el formulario a cualquier hora y te llega el cliente con todo\n\n👇 ¿Cuál pondrías primero en tu negocio?\n📌 Guárdalo para no olvidarlo.\n\n🎁 TU REGALO: una demo GRATIS de cómo quedaría la web de tu negocio.\nPara conseguirla:\n1️⃣ Sígueme\n2️⃣ Comenta DEMO\nY te la envío por mensaje, gratis y sin compromiso.",
+  "descripcion_tt": "3 cosas que tu negocio puede automatizar mañana ⚙️ La 3ª te ahorra horas 👀 🎁 Demo GRATIS de la web de tu negocio → 1️⃣ Sígueme 2️⃣ Comenta DEMO",
+  "hashtags": [
+   "#automatizacion",
+   "#negocios",
+   "#emprendedores",
+   "#autonomos",
+   "#pymes",
+   "#negociolocal",
+   "#productividad",
+   "#reservasonline",
+   "#opiniones",
+   "#captaciondeclientes",
+   "#paginaweb",
+   "#marketingdigital",
+   "#clientes",
+   "#obraweb"
+  ],
+  "hashtags_tt": [
+   "#automatizacion",
+   "#negocios",
+   "#emprendedores",
+   "#autonomos",
+   "#productividad",
+   "#obraweb",
+   "#fyp",
+   "#parati"
+  ]
+ },
+ "escenas": [
+  {
+   "kind": "boom",
+   "obj": "planner",
+   "h": [
+    "3 COSAS QUE",
+    "PUEDES AUTOMATIZAR"
+   ],
+   "text": "Tres cosas que tu negocio puede automatizar mañana mismo. Y la tercera te va a ahorrar horas.",
+   "sub": "3 cosas que tu negocio puede automatizar mañana mismo. Y la tercera te va a ahorrar horas.",
+   "screen": "3 COSAS QUE PUEDES AUTOMATIZAR",
+   "visual": "Una agenda de papel llena de notas («9:00 Sra. López ??», «13:00 no vino» tachado…) revienta en pedazos a los 0,12 s y aparecen tres engranajes numerados 1, 2 y 3 girando (el 3 en naranja).",
+   "tecnica": "Gancho visual + promesa de lista con la mejor al final.",
+   "cover": [
+    "3 COSAS QUE",
+    "TU NEGOCIO PUEDE",
+    "*AUTOMATIZAR",
+    "la 3ª te ahorra horas"
+   ],
+   "after": "gears"
+  },
+  {
+   "kind": "giftpromise",
+   "h": "TE DARÉ UN REGALO",
+   "text": "Y al final de este vídeo, te daré un regalo.",
+   "screen": "AL FINAL · TE DARÉ UN REGALO",
+   "visual": "Caja de regalo naranja cerrada que tiembla, con la etiqueta «AL FINAL».",
+   "tecnica": "Recompensa anunciada al principio."
+  },
+  {
+   "kind": "reminder",
+   "badge": "Nº 1",
+   "h": "RECORDAR LAS CITAS",
+   "cut": true,
+   "text": "Uno: recordar las citas. Se acabaron los clientes que se olvidan y no vienen.",
+   "sub": "1: recordar las citas. Se acabaron los clientes que se olvidan y no vienen.",
+   "screen": "Nº 1 · RECORDAR LAS CITAS · NO VINO",
+   "visual": "Una silla vacía con la etiqueta roja «NO VINO»; al móvil llega «Recordatorio: tu cita es mañana a las 10:00» y la silla se ocupa con el cliente.",
+   "tecnica": "Problema y solución vistos literalmente."
+  },
+  {
+   "kind": "secret",
+   "h": [
+    "LA SEGUNDA TE TRAE",
+    "MÁS CLIENTES"
+   ],
+   "text": "Pero la segunda te trae más clientes.",
+   "screen": "LA SEGUNDA TE TRAE MÁS CLIENTES",
+   "visual": "Caja con «?» brillando.",
+   "tecnica": "Bucle abierto hacia el siguiente punto."
+  },
+  {
+   "kind": "reviewask",
+   "badge": "Nº 2",
+   "h": "PEDIR OPINIONES",
+   "cut": true,
+   "text": "Dos: pedir opiniones. Al terminar, le llega un mensaje pidiendo su reseña.",
+   "sub": "2: pedir opiniones. Al terminar, le llega un mensaje pidiendo su reseña.",
+   "screen": "Nº 2 · PEDIR OPINIONES · ★★★★★",
+   "visual": "Al móvil del cliente llega «¿Qué tal ha ido? Déjanos tu opinión» con botón «Opinar», y debajo se rellenan 5 estrellas una a una.",
+   "tecnica": "Solución vista en acción."
+  },
+  {
+   "kind": "three",
+   "title": "LA TERCERA",
+   "label": "LA QUE MÁS AHORRA",
+   "text": "Y la tercera es la que más horas te ahorra.",
+   "screen": "LA TERCERA · LA QUE MÁS AHORRA",
+   "visual": "Tres cajas: 1 y 2 abiertas, la 3 con candado temblando.",
+   "tecnica": "Último bucle: retrasa la mejor recomendación."
+  },
+  {
+   "kind": "leadform",
+   "badge": "Nº 3",
+   "cut": true,
+   "fields": [
+    [
+     "Nombre",
+     "Laura"
+    ],
+    [
+     "Servicio",
+     "Reforma de baño"
+    ],
+    [
+     "Teléfono",
+     "6XX XXX XXX"
+    ]
+   ],
+   "text": "Tres: que tu web capte clientes por ti. Rellenan un formulario a cualquier hora, y te llega el cliente con todo lo que necesitas.",
+   "sub": "3: que tu web capte clientes por ti. Rellenan un formulario a cualquier hora, y te llega el cliente con todo lo que necesitas.",
+   "screen": "Nº 3 · PIDE PRESUPUESTO · Nuevo cliente",
+   "visual": "En la web se rellena solo un formulario «Pide presupuesto» (Laura · Reforma de baño · teléfono), se pulsa Enviar y llega al móvil «Nuevo cliente · Laura · Reforma de baño · Recibido a las 23:14».",
+   "tecnica": "Revelación principal (captación de clientes) con demostración."
+  },
+  {
+   "kind": "nocalls",
+   "text": "Sin llamadas. Sin perder tiempo.",
+   "screen": "SIN LLAMADAS · SIN PERDER TIEMPO",
+   "visual": "Un icono de teléfono que se tacha en rojo al decir «sin llamadas» y un reloj al decir «sin perder tiempo».",
+   "tecnica": "Beneficio final, corto y rotundo."
+  },
+  {
+   "kind": "secret",
+   "h": [
+    "¿CUÁL PONDRÍAS",
+    "PRIMERO?"
+   ],
+   "text": "¿Cuál pondrías primero en tu negocio?",
+   "screen": "¿CUÁL PONDRÍAS PRIMERO?",
+   "visual": "Caja con «?» brillando.",
+   "tecnica": "Pregunta directa al espectador: provoca comentarios."
+  },
+  {
+   "kind": "gift",
+   "reveal": "DEMO GRATIS",
+   "h": "TU REGALO",
+   "cut": true,
+   "text": "Y aquí va tu regalo: una demo gratis de cómo quedaría la web de tu negocio.",
+   "screen": "TU REGALO · DEMO GRATIS",
+   "visual": "La caja de regalo se abre y sale una web de ejemplo con la etiqueta «DEMO GRATIS».",
+   "tecnica": "Se cumple la promesa del principio."
+  },
+  {
+   "kind": "steps",
+   "h": "CÓMO CONSEGUIRLA",
+   "marks": [
+    0.42,
+    0.72
+   ],
+   "text": "Para conseguirla, haz dos cosas: uno, sígueme. Dos, comenta demo.",
+   "sub": "Para conseguirla, haz 2 cosas: 1, sígueme. 2, comenta DEMO.",
+   "screen": "CÓMO CONSEGUIRLA · 1 SÍGUEME · 2 COMENTA «DEMO»",
+   "visual": "Paso 1 con botón «Seguir» → «Siguiendo»; paso 2 con un comentario donde se escribe «DEMO».",
+   "tecnica": "CTA en pasos numerados, imposible de malinterpretar."
+  },
+  {
+   "kind": "delivery",
+   "tags": [
+    "GRATIS",
+    "SIN COMPROMISO"
+   ],
+   "text": "Y te la envío por mensaje. Gratis y sin compromiso.",
+   "screen": "GRATIS · SIN COMPROMISO",
+   "visual": "Llega un mensaje de ObraWeb: «¡Aquí tienes tu demo!» con la web dentro del chat.",
+   "tecnica": "Elimina la duda («¿y luego qué?») y reduce el riesgo percibido."
+  }
+ ]
+}
