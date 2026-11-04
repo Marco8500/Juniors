@@ -1,0 +1,223 @@
+{
+ "language": "en",
+ "segments": [
+  {
+   "start": 0.0,
+   "end": 1.9,
+   "text": " This is the end",
+   "no_speech_prob": 0.6098771095275879
+  },
+  {
+   "start": 5.0,
+   "end": 9.72,
+   "text": " Hold your breath and count to ten",
+   "no_speech_prob": 0.6098771095275879
+  },
+  {
+   "start": 11.119999999999997,
+   "end": 15.96,
+   "text": " Feel the earth moving then",
+   "no_speech_prob": 0.6098771095275879
+  },
+  {
+   "start": 17.639999999999997,
+   "end": 23.68,
+   "text": " Hear my heart burst again",
+   "no_speech_prob": 0.6098771095275879
+  },
+  {
+   "start": 26.0,
+   "end": 28.1,
+   "text": " For this is the end",
+   "no_speech_prob": 0.6098771095275879
+  },
+  {
+   "start": 30.119999999999997,
+   "end": 30.7,
+   "text": " Let's do it now",
+   "no_speech_prob": 0.4486594498157501
+  }
+ ],
+ "words": [
+  {
+   "word": "This",
+   "start": 0.0,
+   "end": 0.5,
+   "prob": 0.491
+  },
+  {
+   "word": "is",
+   "start": 0.5,
+   "end": 0.84,
+   "prob": 0.985
+  },
+  {
+   "word": "the",
+   "start": 0.84,
+   "end": 1.2,
+   "prob": 0.986
+  },
+  {
+   "word": "end",
+   "start": 1.2,
+   "end": 1.9,
+   "prob": 0.976
+  },
+  {
+   "word": "Hold",
+   "start": 4.96,
+   "end": 5.56,
+   "prob": 0.158
+  },
+  {
+   "word": "your",
+   "start": 5.56,
+   "end": 5.88,
+   "prob": 0.987
+  },
+  {
+   "word": "breath",
+   "start": 5.88,
+   "end": 6.44,
+   "prob": 0.997
+  },
+  {
+   "word": "and",
+   "start": 6.44,
+   "end": 6.74,
+   "prob": 0.944
+  },
+  {
+   "word": "count",
+   "start": 6.74,
+   "end": 7.38,
+   "prob": 0.947
+  },
+  {
+   "word": "to",
+   "start": 7.38,
+   "end": 9.02,
+   "prob": 0.922
+  },
+  {
+   "word": "ten",
+   "start": 9.02,
+   "end": 9.72,
+   "prob": 0.876
+  },
+  {
+   "word": "Feel",
+   "start": 11.12,
+   "end": 12.32,
+   "prob": 0.967
+  },
+  {
+   "word": "the",
+   "start": 12.32,
+   "end": 12.86,
+   "prob": 0.998
+  },
+  {
+   "word": "earth",
+   "start": 12.86,
+   "end": 13.36,
+   "prob": 0.82
+  },
+  {
+   "word": "moving",
+   "start": 13.36,
+   "end": 14.9,
+   "prob": 0.432
+  },
+  {
+   "word": "then",
+   "start": 14.9,
+   "end": 15.96,
+   "prob": 0.866
+  },
+  {
+   "word": "Hear",
+   "start": 17.64,
+   "end": 18.84,
+   "prob": 0.966
+  },
+  {
+   "word": "my",
+   "start": 18.84,
+   "end": 19.38,
+   "prob": 0.987
+  },
+  {
+   "word": "heart",
+   "start": 19.38,
+   "end": 20.02,
+   "prob": 0.994
+  },
+  {
+   "word": "burst",
+   "start": 20.02,
+   "end": 22.58,
+   "prob": 0.978
+  },
+  {
+   "word": "again",
+   "start": 22.58,
+   "end": 23.68,
+   "prob": 0.536
+  },
+  {
+   "word": "For",
+   "start": 25.86,
+   "end": 26.46,
+   "prob": 0.653
+  },
+  {
+   "word": "this",
+   "start": 26.46,
+   "end": 26.84,
+   "prob": 0.995
+  },
+  {
+   "word": "is",
+   "start": 26.84,
+   "end": 27.2,
+   "prob": 0.994
+  },
+  {
+   "word": "the",
+   "start": 27.2,
+   "end": 27.54,
+   "prob": 0.997
+  },
+  {
+   "word": "end",
+   "start": 27.54,
+   "end": 28.1,
+   "prob": 0.999
+  },
+  {
+   "word": "Let's",
+   "start": 30.12,
+   "end": 30.38,
+   "prob": 0.667
+  },
+  {
+   "word": "do",
+   "start": 30.38,
+   "end": 30.46,
+   "prob": 0.928
+  },
+  {
+   "word": "it",
+   "start": 30.46,
+   "end": 30.52,
+   "prob": 0.996
+  },
+  {
+   "word": "now",
+   "start": 30.52,
+   "end": 30.7,
+   "prob": 0.922
+  }
+ ]
+}
