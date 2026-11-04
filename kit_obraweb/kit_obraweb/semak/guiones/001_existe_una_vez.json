@@ -1,0 +1,182 @@
+{
+ "meta": {
+  "titulo": "Este reloj existe una sola vez",
+  "formato": "Secreto / storytelling con revelación (formato 6 + 1)",
+  "objetivo": "retención → comentarios «MÍO» → seguidores → encargos",
+  "concepto": "Presentar el concepto 1 of 1 de SERMAK: frente a relojes fabricados por miles, cada diseño SERMAK existe una vez y, cuando se vende, no vuelve. Después se enseña lo que recibe el cliente (estuche, certificado 1/1 con su nombre, fotos reales antes del envío) y se ofrece como regalo una propuesta de reloj por encargo, gratis y sin compromiso.",
+  "tecnicas": [
+   "Gancho en 0,12 s: un cristal ahumado con «¿CUÁNTOS HAY?» estalla y revela el Ónix Rosé (el reloj nunca se rompe).",
+   "Regalo anunciado justo después del gancho: «al final del vídeo te daré un regalo».",
+   "Contraste literal: relojes iguales multiplicándose («por miles») → desaparecen y queda uno con un «1» gigante.",
+   "Prueba de escasez: tres piezas reales vendidas reciben el sello VENDIDO al nombrarlas.",
+   "Bucle abierto: «Pero lo mejor es lo que llega a tu casa» con la caja temblando.",
+   "Cada promesa se ve: estuche real, certificado que escribe «Tu nombre», chat con fotos reales.",
+   "Recompensa en pasos numerados: 1 sígueme · 2 comenta MÍO, y cómo llega (por mensaje)."
+  ],
+  "cta": "«Sígueme y comenta MÍO. Te preparo gratis una propuesta de reloj por encargo, sin compromiso.»",
+  "recompensa": "⚠️ PENDIENTE DE CONFIRMAR: a cada comentario «MÍO» hay que enviarle por mensaje una propuesta de reloj por encargo (caja, esfera, correa), gratis y sin compromiso. No publicar si no se puede cumplir siempre.",
+  "descripcion_ig": "De cada diseño SERMAK existe uno. Solo uno. Cuando se vende, no vuelve.\n\nEstuche SERMAK, certificado 1 of 1 y fotos reales de tu reloj antes de enviarlo.\n\n🎁 Sígueme y comenta MÍO: te preparo gratis una propuesta de reloj por encargo, sin compromiso.",
+  "descripcion_tt": "Este reloj existe una sola vez ⌚ Comenta MÍO y te diseño el tuyo gratis",
+  "hashtags": [
+   "#sermak",
+   "#sermak1of1",
+   "#timetobeyourself",
+   "#relojes",
+   "#relojunico",
+   "#piezaunica",
+   "#relojeshombre",
+   "#cronografo",
+   "#ororosa",
+   "#relojpersonalizado"
+  ],
+  "hashtags_tt": [
+   "#sermak",
+   "#relojes",
+   "#relojunico",
+   "#piezaunica",
+   "#watchtok",
+   "#fyp",
+   "#parati"
+  ]
+ },
+ "escenas": [
+  {
+   "kind": "reveal",
+   "watch": "onix_rose",
+   "glass": [
+    "¿CUÁNTOS",
+    "HAY?"
+   ],
+   "h": [
+    "SOLO EXISTE",
+    "UNO"
+   ],
+   "text": "Este reloj existe una sola vez en el mundo.",
+   "screen": "SOLO EXISTE UNO",
+   "visual": "Cristal ahumado con «¿CUÁNTOS HAY?» que estalla a los 0,12 s con destello y chispas oro rosa; detrás aparece el Cronógrafo Ónix Rosé con un barrido de luz.",
+   "tecnica": "Gancho visual + afirmación inesperada.",
+   "cover": [
+    "ESTE RELOJ",
+    "EXISTE",
+    "*UNA VEZ"
+   ]
+  },
+  {
+   "kind": "giftpromise",
+   "text": "Y al final del vídeo, te daré un regalo.",
+   "screen": "AL FINAL · TE DARÉ UN REGALO",
+   "visual": "Caja marino con lazo oro rosa y logo SERMAK que tiembla; etiqueta «AL FINAL».",
+   "tecnica": "Recompensa anunciada al principio."
+  },
+  {
+   "kind": "mass",
+   "cut": true,
+   "h": "POR MILES",
+   "text": "Casi todos los relojes se fabrican por miles. Todos iguales.",
+   "screen": "POR MILES · TODOS IGUALES",
+   "visual": "Un reloj genérico se multiplica en cuadrícula hasta llenar la pantalla; entra la etiqueta «TODOS IGUALES».",
+   "tecnica": "Contraste: lo normal antes de lo especial."
+  },
+  {
+   "kind": "one",
+   "watch": "onix_rose",
+   "mark": 0.62,
+   "h": "SOLO UNO",
+   "text": "Aquí no. De cada diseño se hace uno. Solo uno.",
+   "screen": "SOLO UNO · 1",
+   "visual": "Los relojes iguales desaparecen y queda el Ónix Rosé real; al decir «uno» cae un 1 gigante en oro rosa.",
+   "tecnica": "Revelación con golpe visual."
+  },
+  {
+   "kind": "sold",
+   "cut": true,
+   "marks": [
+    0.42,
+    0.6,
+    0.78
+   ],
+   "hits": [
+    0.42,
+    0.6,
+    0.78
+   ],
+   "h": "NO VUELVEN",
+   "text": "Y cuando se vende, no vuelve. Estos ya tienen dueño.",
+   "screen": "NO VUELVEN · VENDIDO ×3",
+   "visual": "Tarjetas de Cronógrafo Panda, Deportivo Blanco y Octogonal Azul; el sello rojo VENDIDO cae sobre cada una.",
+   "tecnica": "Prueba de escasez real (piezas vendidas en la web)."
+  },
+  {
+   "kind": "boxshake",
+   "cut": true,
+   "h": "LO QUE LLEGA A TU CASA",
+   "text": "Pero lo mejor es lo que llega a tu casa.",
+   "screen": "LO QUE LLEGA A TU CASA",
+   "visual": "La caja SERMAK tiembla con un «?» oro rosa.",
+   "tecnica": "Bucle abierto."
+  },
+  {
+   "kind": "boxopen",
+   "h": "TU RELOJ",
+   "tag": "ESTUCHE SERMAK",
+   "text": "Tu reloj, en su estuche SERMAK.",
+   "screen": "TU RELOJ · ESTUCHE SERMAK",
+   "visual": "Foto del reloj en su estuche SERMAK con zoom lento y brillo.",
+   "tecnica": "Lo que se dice se ve."
+  },
+  {
+   "kind": "cert",
+   "mark": 0.35,
+   "h": "UNO DE UNO",
+   "text": "Con su certificado uno de uno. Y tu nombre.",
+   "sub": "Con su certificado 1 de 1. Y tu nombre.",
+   "screen": "UNO DE UNO · certificado",
+   "visual": "Certificado crema con logo, «Modelo: Cronógrafo Ónix Rosé»; en «Propietario» se escribe «Tu nombre»; cae el sello 1 / 1.",
+   "tecnica": "Personalización: el espectador se imagina dueño.",
+   "hits": [
+    0.35
+   ]
+  },
+  {
+   "kind": "realphotos",
+   "watch": "onix_rose",
+   "h": "ANTES DE ENVIARLO",
+   "text": "Y antes de enviarlo, te mando fotos reales de tu reloj.",
+   "screen": "ANTES DE ENVIARLO · FOTOS REALES",
+   "visual": "Chat de SERMAK: «Tu reloj, antes de enviarlo» y llegan dos fotos del reloj.",
+   "tecnica": "Confianza con prueba visual."
+  },
+  {
+   "kind": "steps",
+   "cut": true,
+   "marks": [
+    0.35,
+    0.62
+   ],
+   "h": "TU REGALO",
+   "text": "Tu regalo. Uno: sígueme. Dos: comenta MÍO.",
+   "sub": "Tu regalo. 1: sígueme. 2: comenta MÍO.",
+   "screen": "TU REGALO · 1 SÍGUEME · 2 COMENTA «MÍO»",
+   "visual": "Dos tarjetas numeradas: botón Seguir que pasa a Siguiendo y comentario «MÍO» que se escribe.",
+   "tecnica": "Recompensa en pasos."
+  },
+  {
+   "kind": "delivery",
+   "h": "POR MENSAJE",
+   "text": "Y te mando gratis una propuesta de reloj por encargo, solo para ti. Sin compromiso.",
+   "screen": "POR MENSAJE · GRATIS · SIN COMPROMISO",
+   "visual": "Chat de SERMAK con «Tu diseño, solo para ti»: caja, esfera y correa a tu gusto; etiquetas GRATIS y SIN COMPROMISO.",
+   "tecnica": "Cómo llega la recompensa."
+  },
+  {
+   "kind": "logo",
+   "tag": "UNO DE UNO",
+   "text": "SERMAK. Uno de uno.",
+   "screen": "Logo SERMAK · UNO DE UNO · Seguir",
+   "visual": "Logo SERMAK con «Time to be yourself», «UNO DE UNO» y botón Seguir que se pulsa.",
+   "tecnica": "Cierre de marca.",
+   "nosub": true,
+   "tail": 0.6
+  }
+ ]
+}

@@ -1,10 +1,10 @@
-# Marca SEMAK — BORRADOR (pendiente de confirmar por el dueño)
+# Marca SERMAK — ficha de marca (parte confirmada, parte pendiente)
 
 > Todo lo marcado ❓ está sin confirmar y NO se usa en vídeos hasta que el dueño lo confirme.
 > Fuente de lo ya rellenado: web sermak.netlify.app e imágenes enviadas.
 
 ## Nombre
-- ❓ ¿"SEMAK" o "SERMAK"? (el logo, la web y las esferas dicen SERMAK)
+- ✅ **SERMAK** (confirmado)
 - Lema: **Time to be yourself** · Concepto: **1 of 1** (cada diseño existe una sola vez)
 
 ## Qué se vende (según la web)
@@ -22,7 +22,7 @@
 - Antes de enviar: revisión del reloj + fotos reales al comprador.
 - Por encargo: caja (redonda, octogonal, cojín), esfera, bisel, correa (acero, caucho, piel), movimiento (cuarzo o automático), grabado y estuche regalo. Precio cerrado por WhatsApp.
 - ❓ Materiales exactos, medidas, resistencia al agua, movimientos de cada pieza, garantía → NO se dicen hasta confirmarlos.
-- ❓ ¿Se muestran precios en los vídeos?
+- ✅ **NUNCA se muestran precios** en vídeo, pantalla, portada ni texto (confirmado).
 
 ## Público y canales
 - ❓ Edad, hombre/mujer/ambos, ¿para uno mismo o para regalar?
@@ -34,7 +34,10 @@
 - Tono propuesto: lujo cercano y seguro de sí mismo, tuteo, frases cortas. Gancho fuerte pero elegante (destello, golpe de luz, cristal ajeno que se rompe para revelar el reloj; **el reloj nunca se rompe**).
 
 ## Recompensa / CTA
-- ❓ Qué regalo o recompensa puede cumplirse SIEMPRE (pendiente).
+- ❓ PROVISIONAL en el reel 001: «Sígueme y comenta MÍO → te mando gratis una propuesta de reloj por encargo, sin compromiso» (basado en el servicio por encargo de la web). Confirmar que se puede cumplir siempre o cambiarlo.
 
 ## Voz
-- Oficial: piper es_ES-davefx-medium. Muestra comparativa en `muestra_voz_semak.mp3` (1º velocidad 0.85 de ObraWeb, 2º 0.95 más pausada) ❓ elegir.
+- ✅ Oficial: piper es_ES-davefx-medium a **length_scale 0.95** (más pausada que ObraWeb). Ya configurado en `voz.sh`.
+
+## Fotos
+- `fotos/provisionales/`: imágenes enviadas (generadas con IA, texto de esfera a veces deformado, baja resolución). Sustituir por fotos reales en `fotos/reales/` y cambiar `FOTOS` en `reel_semak.py`.
