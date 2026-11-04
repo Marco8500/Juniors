@@ -92,3 +92,4 @@ Ninguna referencia tiene subtítulos. Para mi-video.mp4 (con voz) uso esta propu
 
 ## Correcciones del usuario (se añaden aquí y mandan sobre lo anterior)
 - Ignorar el outro de TikTok de las referencias.
+- **Formato por defecto: B ("Cinematic producto").** El usuario va a pasar vídeos detallados de producto del tipo del reloj plata con esfera azul. A queda solo como referencia secundaria.
