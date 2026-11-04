@@ -1,17 +1,131 @@
 {
-  "nota": "Catálogo de tomas. estado: disponible | usado:<video>. Tramos en segundos del clip original.",
-  "clips": [
+ "nota": "Catálogo de tomas. estado: disponible | usado:<video>. Tramos en segundos del clip original.",
+ "clips": [
+  {
+   "id": "clip-01",
+   "archivo": "clips/entrada/clip-01.mp4",
+   "duracion": 8.56,
+   "formato": "720x1280 vertical, HEVC, 30 fps, sin voz (audio -66 dB)",
+   "producto": "reloj esqueleto, caja octogonal acero con bisel oro rosa, esfera negra con movimiento visible y índices de brillantes",
+   "tramos": [
     {
-      "id": "clip-01",
-      "archivo": "clips/entrada/clip-01.mp4",
-      "duracion": 8.56,
-      "formato": "720x1280 vertical, HEVC, 30 fps, sin voz (audio -66 dB)",
-      "producto": "reloj esqueleto, caja octogonal acero con bisel oro rosa, esfera negra con movimiento visible y índices de brillantes",
-      "tramos": [
-        {"de": 0.4, "a": 3.5, "tipo": "macro esfera/movimiento", "movimiento": "deriva lenta mano alzada", "gancho": 8, "problemas": "reflejo de luz quemado en el cristal (zona derecha)", "estado": "disponible"},
-        {"de": 3.5, "a": 5.8, "tipo": "pull-out macro a plano medio", "movimiento": "alejamiento rápido", "gancho": 5, "problemas": "movimiento algo brusco, reflejo", "estado": "disponible"},
-        {"de": 5.8, "a": 8.5, "tipo": "reloj completo en cojín, picado", "movimiento": "se aleja y gira", "gancho": 4, "problemas": "fondo gris (no negro), ligeramente desenfocado, cojín beige", "estado": "disponible"}
-      ]
+     "de": 0.4,
+     "a": 3.5,
+     "tipo": "macro esfera/movimiento",
+     "movimiento": "deriva lenta mano alzada",
+     "gancho": 8,
+     "problemas": "reflejo de luz quemado en el cristal (zona derecha)",
+     "estado": "disponible"
+    },
+    {
+     "de": 3.5,
+     "a": 5.8,
+     "tipo": "pull-out macro a plano medio",
+     "movimiento": "alejamiento rápido",
+     "gancho": 5,
+     "problemas": "movimiento algo brusco, reflejo",
+     "estado": "disponible"
+    },
+    {
+     "de": 5.8,
+     "a": 8.5,
+     "tipo": "reloj completo en cojín, picado",
+     "movimiento": "se aleja y gira",
+     "gancho": 4,
+     "problemas": "fondo gris (no negro), ligeramente desenfocado, cojín beige",
+     "estado": "disponible"
     }
-  ]
+   ]
+  },
+  {
+   "id": "clip-02",
+   "archivo": "clips/entrada/clip-02.mp4",
+   "duracion": 210.53,
+   "formato": "270x480 vertical (MUY BAJA RESOLUCIÓN, x4 para 1080x1920), H.264 30 fps; es una recopilación de varias tomas, algunas horizontales con bandas negras; audio sin voz inteligible",
+   "producto": "reloj SERMAK esqueleto, caja octogonal acero con bisel/detalles azules, esfera negra con números romanos; al final aparece el reloj de clip-01",
+   "tramos": [
+    {
+     "de": 0.0,
+     "a": 11.5,
+     "tipo": "reloj en la muñeca, guante negro",
+     "movimiento": "mano alzada",
+     "gancho": 5,
+     "problemas": "baja resolución, fondo gris",
+     "estado": "disponible"
+    },
+    {
+     "de": 11.5,
+     "a": 60.4,
+     "tipo": "muñeca: cierre desplegable y eslabones de la pulsera",
+     "movimiento": "varios giros",
+     "gancho": 4,
+     "problemas": "repetitivo, baja resolución, desenfoques",
+     "estado": "disponible"
+    },
+    {
+     "de": 60.5,
+     "a": 62.5,
+     "tipo": "macro esfera frontal, logo SERMAK y números romanos",
+     "movimiento": "casi fijo, ligera deriva",
+     "gancho": 8,
+     "problemas": "baja resolución; fondo beige/cálido",
+     "estado": "disponible"
+    },
+    {
+     "de": 62.5,
+     "a": 66.0,
+     "tipo": "macro con cambio de foco",
+     "movimiento": "rack focus/desenfoque",
+     "gancho": 5,
+     "problemas": "desenfoque largo",
+     "estado": "disponible"
+    },
+    {
+     "de": 66.0,
+     "a": 69.7,
+     "tipo": "macro esfera 3/4 con reflejo que barre el cristal",
+     "movimiento": "slide lateral",
+     "gancho": 7,
+     "problemas": "baja resolución",
+     "estado": "disponible"
+    },
+    {
+     "de": 69.8,
+     "a": 127.5,
+     "tipo": "horizontal con bandas: reloj en cojín, giros",
+     "movimiento": "varios",
+     "gancho": 3,
+     "problemas": "HORIZONTAL (recorte a vertical = ~120 px de ancho útil, inservible)",
+     "estado": "descartado"
+    },
+    {
+     "de": 127.5,
+     "a": 158.1,
+     "tipo": "manos con guante abriendo el cierre en el cojín",
+     "movimiento": "mano alzada",
+     "gancho": 4,
+     "problemas": "cojín beige, baja resolución",
+     "estado": "disponible"
+    },
+    {
+     "de": 158.1,
+     "a": 199.9,
+     "tipo": "horizontal con bandas: macros de la esfera",
+     "movimiento": "deriva",
+     "gancho": 5,
+     "problemas": "HORIZONTAL, inservible en vertical",
+     "estado": "descartado"
+    },
+    {
+     "de": 200.0,
+     "a": 210.5,
+     "tipo": "duplicado de clip-01 (reloj oro rosa)",
+     "movimiento": "-",
+     "gancho": 0,
+     "problemas": "duplicado",
+     "estado": "descartado"
+    }
+   ]
+  }
+ ]
 }
