@@ -103,3 +103,4 @@ Ninguna referencia tiene subtítulos. Para mi-video.mp4 (con voz) uso esta propu
   - Saturación −20 % salvo el color de la esfera. Balance ligeramente frío (+azul en sombras).
   - **Degradado de luz detrás del producto**, que imita el fondo grafito de B (#2A2C30 → #000): un radial suave desde arriba.
   - Viñeta del 25 %.
+- **Clips de baja resolución (< 720 px de ancho):** antes de graduar, escalar x4 con IA (Real-ESRGAN `realesr-general-x4v3`, `editor/scripts/escalar_ia.py`) solo en los tramos elegidos (~1,5 s/frame en CPU). Después se gradúa con `preparar_clip.sh`, quitando de ese script el `hqdn3d` y el `unsharp`, porque la IA ya limpia y define.

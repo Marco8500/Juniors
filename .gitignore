@@ -3,3 +3,5 @@ analisis/trans/
 node_modules/
 editor/public/clips/_*
 clips/entrada/
+editor/modelos/
+clips/escalados/
