@@ -1,0 +1,9 @@
+{
+  "planos": [
+    {"src": "clips/sermak-01/p1.mp4", "movimiento": "push-in"},
+    {"src": "clips/sermak-01/p2.mp4", "movimiento": "slide-left"},
+    {"src": "clips/sermak-01/p3.mp4", "movimiento": "push-in"},
+    {"src": "clips/sermak-01/p4.mp4", "movimiento": "pull-out"}
+  ],
+  "musica": "musica/ambient-b.m4a"
+}
