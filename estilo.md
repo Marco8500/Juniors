@@ -104,3 +104,6 @@ Ninguna referencia tiene subtítulos. Para mi-video.mp4 (con voz) uso esta propu
   - **Degradado de luz detrás del producto**, que imita el fondo grafito de B (#2A2C30 → #000): un radial suave desde arriba.
   - Viñeta del 25 %.
 - **Clips de baja resolución (< 720 px de ancho):** antes de graduar, escalar x4 con IA (Real-ESRGAN `realesr-general-x4v3`, `editor/scripts/escalar_ia.py`) solo en los tramos elegidos (~1,5 s/frame en CPU). Después se gradúa con `preparar_clip.sh`, quitando de ese script el `hqdn3d` y el `unsharp`, porque la IA ya limpia y define.
+- **Ritmo más rápido (manda sobre la rejilla de 92 frames):** planos de **46 frames (1,53 s)**, es decir, 8 planos en 12,27 s con corte seco. Sigue siendo una rejilla fija, a la mitad de la de B.
+- **Siempre en movimiento:** nada de planos estáticos. Cada plano tiene que tener movimiento real de cámara o del producto. El push-in o slide digital pasa a ser más marcado (100 % → 110 % en 1,53 s) y nunca se usa "fijo".
+- **Narrativa obligatoria:** se tiene que ver **la correa/cierre abriéndose** y **el reloj poniéndose en la muñeca** (cerrar el cierre en la muñeca). Orden: gancho macro → detalle → cierre abriéndose → poner en la muñeca → reloj puesto con giro de muñeca.

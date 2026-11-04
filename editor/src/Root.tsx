@@ -20,7 +20,7 @@ export const RemotionRoot: React.FC = () => {
         durationInFrames={FRAMES_POR_PLANO * 4}
         defaultProps={porDefecto}
         calculateMetadata={({ props }) => ({
-          durationInFrames: FRAMES_POR_PLANO * Math.max(props.planos.length, 1),
+          durationInFrames: (props.framesPorPlano ?? FRAMES_POR_PLANO) * Math.max(props.planos.length, 1),
         })}
       />
     </>

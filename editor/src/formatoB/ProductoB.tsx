@@ -25,11 +25,13 @@ export type Plano = {
 export type ProductoBProps = {
   planos: Plano[];
   musica: string;
+  framesPorPlano?: number; // por defecto 92; estilo.md actual: 46
+  intensidad?: number; // zoom extra a lo largo del plano (0.06 = +6 %)
 };
 
-const Movido: React.FC<{ plano: Plano }> = ({ plano }) => {
+const Movido: React.FC<{ plano: Plano; frames: number; k: number }> = ({ plano, frames, k }) => {
   const frame = useCurrentFrame();
-  const p = interpolate(frame, [0, FRAMES_POR_PLANO], [0, 1], {
+  const p = interpolate(frame, [0, frames], [0, 1], {
     extrapolateRight: "clamp",
     easing: Easing.inOut(Easing.sin),
   });
@@ -37,18 +39,18 @@ const Movido: React.FC<{ plano: Plano }> = ({ plano }) => {
   let x = 0;
   switch (plano.movimiento) {
     case "push-in":
-      scale = 1.0 + 0.06 * p;
+      scale = 1.0 + k * p;
       break;
     case "pull-out":
-      scale = 1.06 - 0.06 * p;
+      scale = 1.0 + k - k * p;
       break;
     case "slide-left":
-      scale = 1.08;
-      x = 30 - 60 * p;
+      scale = 1.04 + k;
+      x = 500 * k * (1 - 2 * p);
       break;
     case "slide-right":
-      scale = 1.08;
-      x = -30 + 60 * p;
+      scale = 1.04 + k;
+      x = -500 * k * (1 - 2 * p);
       break;
     default:
       scale = 1.02;
@@ -83,13 +85,18 @@ const Luz: React.FC = () => (
   </>
 );
 
-export const ProductoB: React.FC<ProductoBProps> = ({ planos, musica }) => {
+export const ProductoB: React.FC<ProductoBProps> = ({
+  planos,
+  musica,
+  framesPorPlano = FRAMES_POR_PLANO,
+  intensidad = 0.06,
+}) => {
   const { durationInFrames } = useVideoConfig();
   return (
     <AbsoluteFill style={{ backgroundColor: "#000" }}>
       {planos.map((plano, i) => (
-        <Sequence key={i} from={i * FRAMES_POR_PLANO} durationInFrames={FRAMES_POR_PLANO}>
-          <Movido plano={plano} />
+        <Sequence key={i} from={i * framesPorPlano} durationInFrames={framesPorPlano}>
+          <Movido plano={plano} frames={framesPorPlano} k={intensidad} />
         </Sequence>
       ))}
       <Luz />
