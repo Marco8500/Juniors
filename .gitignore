@@ -2,3 +2,4 @@ analisis/**/audio.wav
 analisis/trans/
 node_modules/
 editor/public/clips/_*
+clips/entrada/

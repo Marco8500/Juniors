@@ -1,1 +1,17 @@
-{"clips": []}
+{
+  "nota": "Catálogo de tomas. estado: disponible | usado:<video>. Tramos en segundos del clip original.",
+  "clips": [
+    {
+      "id": "clip-01",
+      "archivo": "clips/entrada/clip-01.mp4",
+      "duracion": 8.56,
+      "formato": "720x1280 vertical, HEVC, 30 fps, sin voz (audio -66 dB)",
+      "producto": "reloj esqueleto, caja octogonal acero con bisel oro rosa, esfera negra con movimiento visible y índices de brillantes",
+      "tramos": [
+        {"de": 0.4, "a": 3.5, "tipo": "macro esfera/movimiento", "movimiento": "deriva lenta mano alzada", "gancho": 8, "problemas": "reflejo de luz quemado en el cristal (zona derecha)", "estado": "disponible"},
+        {"de": 3.5, "a": 5.8, "tipo": "pull-out macro a plano medio", "movimiento": "alejamiento rápido", "gancho": 5, "problemas": "movimiento algo brusco, reflejo", "estado": "disponible"},
+        {"de": 5.8, "a": 8.5, "tipo": "reloj completo en cojín, picado", "movimiento": "se aleja y gira", "gancho": 4, "problemas": "fondo gris (no negro), ligeramente desenfocado, cojín beige", "estado": "disponible"}
+      ]
+    }
+  ]
+}
