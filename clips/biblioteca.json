@@ -60,7 +60,7 @@
      "movimiento": "varios giros",
      "gancho": 4,
      "problemas": "repetitivo, baja resolución, desenfoques",
-     "estado": "disponible"
+     "estado": "usado:sermak-01 (24.5-27.57 plano 4)"
     },
     {
      "de": 60.5,
@@ -69,7 +69,7 @@
      "movimiento": "casi fijo, ligera deriva",
      "gancho": 8,
      "problemas": "baja resolución; fondo beige/cálido",
-     "estado": "disponible"
+     "estado": "usado:sermak-01 (60.5-62.5 (cámara lenta 0,64x) plano 1)"
     },
     {
      "de": 62.5,
@@ -87,7 +87,7 @@
      "movimiento": "slide lateral",
      "gancho": 7,
      "problemas": "baja resolución",
-     "estado": "disponible"
+     "estado": "usado:sermak-01 (66.0-69.07 plano 2)"
     },
     {
      "de": 69.8,
@@ -105,7 +105,7 @@
      "movimiento": "mano alzada",
      "gancho": 4,
      "problemas": "cojín beige, baja resolución",
-     "estado": "disponible"
+     "estado": "usado:sermak-01 (153.9-156.97 plano 3)"
     },
     {
      "de": 158.1,
