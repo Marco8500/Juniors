@@ -219,6 +219,60 @@
      "nota": "tomas del cojín (134-157) descartadas para fondo negro: el recorte no separa cojín y acero"
     }
    ]
+  },
+  {
+   "id": "clip-03",
+   "archivo": "clips/entrada/clip-03.mp4",
+   "duracion": 3.56,
+   "formato": "624x832 (3:4), 16 fps, sin audio; imagen limpia [SUPOSICIÓN: generado con IA]",
+   "producto": "SERMAK cronógrafo acero, esfera blanca con subesferas azules, correa caucho azul; cojín blanco, mármol blanco, cajas azul marino SERMAK",
+   "tramos": [
+    {
+     "de": 0.0,
+     "a": 3.56,
+     "tipo": "cenital sobre el reloj en el cojín → la cámara baja y gira hasta un perfil lateral bajo con las cajas azules al fondo",
+     "movimiento": "cámara suave continua",
+     "gancho": 9,
+     "problemas": "fondo blanco (no negro); hay que recortar laterales para 9:16",
+     "estado": "disponible"
+    }
+   ]
+  },
+  {
+   "id": "clip-04",
+   "archivo": "clips/entrada/clip-04.mp4",
+   "duracion": 3.56,
+   "formato": "624x832 (3:4), 16 fps, sin audio; imagen limpia [SUPOSICIÓN: generado con IA]",
+   "producto": "SERMAK cronógrafo acero, esfera blanca con subesferas azules, correa caucho azul; cojín blanco, mármol blanco, cajas azul marino SERMAK",
+   "tramos": [
+    {
+     "de": 0.0,
+     "a": 3.56,
+     "tipo": "cenital con push-in lento y ligero giro hacia la esfera",
+     "movimiento": "cámara suave continua",
+     "gancho": 6,
+     "problemas": "fondo blanco (no negro); hay que recortar laterales para 9:16",
+     "estado": "disponible"
+    }
+   ]
+  },
+  {
+   "id": "clip-05",
+   "archivo": "clips/entrada/clip-05.mp4",
+   "duracion": 3.56,
+   "formato": "624x832 (3:4), 16 fps, sin audio; imagen limpia [SUPOSICIÓN: generado con IA]",
+   "producto": "SERMAK cronógrafo acero, esfera blanca con subesferas azules, correa caucho azul; cojín blanco, mármol blanco, cajas azul marino SERMAK",
+   "tramos": [
+    {
+     "de": 0.0,
+     "a": 3.56,
+     "tipo": "cenital; entran dos manos y sujetan/ajustan el reloj en el cojín",
+     "movimiento": "cámara suave continua",
+     "gancho": 7,
+     "problemas": "fondo blanco (no negro); hay que recortar laterales para 9:16",
+     "estado": "disponible"
+    }
+   ]
   }
  ]
 }
