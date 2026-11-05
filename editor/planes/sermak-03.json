@@ -1,0 +1,15 @@
+{
+  "framesPorPlano": 46,
+  "intensidad": 0.10,
+  "planos": [
+    {"src": "clips/sermak-03/p1.mp4", "movimiento": "push-in"},
+    {"src": "clips/sermak-03/p2.mp4", "movimiento": "slide-left"},
+    {"src": "clips/sermak-03/p3.mp4", "movimiento": "push-in"},
+    {"src": "clips/sermak-03/p4.mp4", "movimiento": "slide-right"},
+    {"src": "clips/sermak-03/p5.mp4", "movimiento": "push-in"},
+    {"src": "clips/sermak-03/p6.mp4", "movimiento": "slide-left"},
+    {"src": "clips/sermak-03/p7.mp4", "movimiento": "push-in"},
+    {"src": "clips/sermak-03/p8.mp4", "movimiento": "pull-out"}
+  ],
+  "musica": "musica/ambient-b.m4a"
+}
