@@ -234,7 +234,7 @@
      "movimiento": "cámara suave continua",
      "gancho": 9,
      "problemas": "fondo blanco (no negro); hay que recortar laterales para 9:16",
-     "estado": "disponible"
+     "estado": "usado:sermak-05 (0.45-3.52 plano 1)"
     }
    ]
   },
@@ -252,7 +252,7 @@
      "movimiento": "cámara suave continua",
      "gancho": 6,
      "problemas": "fondo blanco (no negro); hay que recortar laterales para 9:16",
-     "estado": "disponible"
+     "estado": "usado:sermak-05 (0.4-3.47 plano 2)"
     }
    ]
   },
@@ -270,7 +270,7 @@
      "movimiento": "cámara suave continua",
      "gancho": 7,
      "problemas": "fondo blanco (no negro); hay que recortar laterales para 9:16",
-     "estado": "disponible"
+     "estado": "usado:sermak-05 (0.0-3.07 plano 3 (a partir de 3.25 s se levanta el reloj y se deforma: no usar))"
     }
    ]
   }
