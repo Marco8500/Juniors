@@ -171,6 +171,52 @@
        "esfera en muñeca final"
       ]
      ]
+    },
+    {
+     "video": "sermak-03 (fondo negro)",
+     "tomas": [
+      [
+       60.5,
+       62.03,
+       "macro logo"
+      ],
+      [
+       66.6,
+       68.13,
+       "macro 3/4 reflejo"
+      ],
+      [
+       41.5,
+       43.03,
+       "cierre abriéndose en la muñeca"
+      ],
+      [
+       13.3,
+       14.83,
+       "poniéndolo en la muñeca"
+      ],
+      [
+       31.4,
+       32.93,
+       "cerrando cierre"
+      ],
+      [
+       50.5,
+       52.03,
+       "barrido pulsera"
+      ],
+      [
+       20.6,
+       22.13,
+       "giro muñeca"
+      ],
+      [
+       23.3,
+       24.83,
+       "esfera en muñeca"
+      ]
+     ],
+     "nota": "tomas del cojín (134-157) descartadas para fondo negro: el recorte no separa cojín y acero"
     }
    ]
   }
