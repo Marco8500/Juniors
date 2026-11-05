@@ -12,7 +12,9 @@ src, out, model = sys.argv[1], sys.argv[2], sys.argv[3]
 paso = int(sys.argv[4]) if len(sys.argv) > 4 else 2
 cache = sys.argv[5] if len(sys.argv) > 5 else None
 W, H, w, h = 1080, 1920, 540, 960
-VENTANA, PERCENTIL, DILATA, BORDE = 7, 80, 6, 3
+VENTANA = int(os.environ.get('VENTANA', 7)); PERCENTIL = float(os.environ.get('PERCENTIL', 80))
+DILATA, BORDE = 6, 3
+UNION = os.environ.get('UNION') == '1'  # máscara = unión de todo el plano (macros inestables)
 
 raw = subprocess.run(["ffmpeg", "-v", "error", "-i", src, "-f", "rawvideo", "-pix_fmt", "rgb24", "-"],
                      capture_output=True, check=True).stdout
@@ -43,8 +45,12 @@ else:
 # Estabilización temporal: percentil alto en ventana -> sin huecos momentáneos
 r = VENTANA // 2
 est = np.empty_like(masks)
-for i in range(n):
-    est[i] = np.percentile(masks[max(0, i - r):i + r + 1], PERCENTIL, axis=0)
+if UNION:
+    u = np.percentile(masks, 90, axis=0)
+    est[:] = u
+else:
+    for i in range(n):
+        est[i] = np.percentile(masks[max(0, i - r):i + r + 1], PERCENTIL, axis=0)
 kern = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (2 * DILATA // 2 + 1, 2 * DILATA // 2 + 1))
 
 enc = subprocess.Popen(["ffmpeg", "-v", "error", "-y", "-f", "rawvideo", "-pix_fmt", "rgb24", "-s", f"{W}x{H}",
