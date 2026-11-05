@@ -234,7 +234,7 @@
      "movimiento": "cámara suave continua",
      "gancho": 9,
      "problemas": "fondo blanco (no negro); hay que recortar laterales para 9:16",
-     "estado": "usado:sermak-05 (0.45-3.52 plano 1)"
+     "estado": "usado:sermak-05 (0.45-3.52 plano 1) + usado:sermak-06"
     }
    ]
   },
@@ -252,7 +252,7 @@
      "movimiento": "cámara suave continua",
      "gancho": 6,
      "problemas": "fondo blanco (no negro); hay que recortar laterales para 9:16",
-     "estado": "usado:sermak-05 (0.4-3.47 plano 2)"
+     "estado": "usado:sermak-05 (0.4-3.47 plano 2) + usado:sermak-06"
     }
    ]
   },
@@ -271,6 +271,78 @@
      "gancho": 7,
      "problemas": "fondo blanco (no negro); hay que recortar laterales para 9:16",
      "estado": "usado:sermak-05 (0.0-3.07 plano 3 (a partir de 3.25 s se levanta el reloj y se deforma: no usar))"
+    }
+   ]
+  },
+  {
+   "id": "clip-06",
+   "archivo": "clips/entrada/clip-06.mp4",
+   "duracion": 4.85,
+   "formato": "1080x1920 vertical (móvil, sin comprimir), HEVC 30 fps, sin voz",
+   "producto": "SERMAK cronógrafo acero esfera blanca/azul, correa caucho azul; mesa gris oscuro, caja azul marino",
+   "tramos": [
+    {
+     "de": 0,
+     "a": 4.85,
+     "tipo": "cortando plástico de burbujas del paquete con cúter rojo",
+     "movimiento": "mano alzada",
+     "gancho": 4,
+     "problemas": "",
+     "estado": "disponible (poco premium)"
+    }
+   ]
+  },
+  {
+   "id": "clip-07",
+   "archivo": "clips/entrada/clip-07.mp4",
+   "duracion": 5.69,
+   "formato": "1080x1920 vertical (móvil, sin comprimir), HEVC 30 fps, sin voz",
+   "producto": "SERMAK cronógrafo acero esfera blanca/azul, correa caucho azul; mesa gris oscuro, caja azul marino",
+   "tramos": [
+    {
+     "de": 0,
+     "a": 5.69,
+     "tipo": "muñeca con correa → giro que revela la esfera",
+     "movimiento": "mano alzada",
+     "gancho": 8,
+     "problemas": "",
+     "estado": "usado:sermak-06 (1.0-4.07 plano 3)"
+    }
+   ]
+  },
+  {
+   "id": "clip-08",
+   "archivo": "clips/entrada/clip-08.mp4",
+   "duracion": 4.2,
+   "formato": "1080x1920 vertical (móvil, sin comprimir), HEVC 30 fps, sin voz",
+   "producto": "SERMAK cronógrafo acero esfera blanca/azul, correa caucho azul; mesa gris oscuro, caja azul marino",
+   "tramos": [
+    {
+     "de": 0,
+     "a": 4.2,
+     "tipo": "reloj puesto en la muñeca con leve giro",
+     "movimiento": "mano alzada",
+     "gancho": 6,
+     "problemas": "",
+     "estado": "disponible (parecido a clip-07)"
+    }
+   ]
+  },
+  {
+   "id": "clip-09",
+   "archivo": "clips/entrada/clip-09.mp4",
+   "duracion": 6.13,
+   "formato": "1080x1920 vertical (móvil, sin comprimir), HEVC 30 fps, sin voz",
+   "producto": "SERMAK cronógrafo acero esfera blanca/azul, correa caucho azul; mesa gris oscuro, caja azul marino",
+   "tramos": [
+    {
+     "de": 0,
+     "a": 6.13,
+     "tipo": "mete el reloj en la caja, la cierra, tapa con logo SERMAK",
+     "movimiento": "mano alzada",
+     "gancho": 7,
+     "problemas": "",
+     "estado": "usado:sermak-06 (2.5-5.57 plano 4)"
     }
    ]
   }
