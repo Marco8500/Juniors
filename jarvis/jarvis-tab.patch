@@ -1,0 +1,416 @@
+diff --git a/frontend/src/App.tsx b/frontend/src/App.tsx
+index caf7f55..2e69024 100644
+--- a/frontend/src/App.tsx
++++ b/frontend/src/App.tsx
+@@ -8,6 +8,7 @@ import { GetStartedPage } from './pages/GetStartedPage';
+ import { AgentsPage } from './pages/AgentsPage';
+ import { DataSourcesPage } from './pages/DataSourcesPage';
+ import { LogsPage } from './pages/LogsPage';
++import { JarvisPage } from './pages/JarvisPage';
+ import { CommandPalette } from './components/CommandPalette';
+ import { SetupScreen } from './components/SetupScreen';
+ import { Toaster } from './components/ui/sonner';
+@@ -191,6 +192,7 @@ export default function App() {
+           <Route path="data-sources" element={<DataSourcesPage />} />
+           <Route path="agents" element={<AgentsPage />} />
+           <Route path="logs" element={<LogsPage />} />
++          <Route path="jarvis" element={<JarvisPage />} />
+         </Route>
+       </Routes>
+       <Toaster position="bottom-right" />
+diff --git a/frontend/src/components/Sidebar/Sidebar.tsx b/frontend/src/components/Sidebar/Sidebar.tsx
+index a4a5b67..ed6d7b8 100644
+--- a/frontend/src/components/Sidebar/Sidebar.tsx
++++ b/frontend/src/components/Sidebar/Sidebar.tsx
+@@ -17,6 +17,7 @@ import {
+   Loader2,
+   ScrollText,
+   Database,
++  Sparkles,
+ } from 'lucide-react';
+ import { ConversationList } from './ConversationList';
+ import { useAppStore } from '../../lib/store';
+@@ -53,6 +54,7 @@ export function Sidebar() {
+   };
+ 
+   const navItems = [
++    { path: '/jarvis', icon: Sparkles, label: 'Jarvis' },
+     { path: '/', icon: MessageSquare, label: 'Chat' },
+     { path: '/dashboard', icon: BarChart3, label: 'Dashboard' },
+     { path: '/data-sources', icon: Database, label: 'Data Sources' },
+diff --git a/frontend/src/pages/JarvisPage.tsx b/frontend/src/pages/JarvisPage.tsx
+new file mode 100644
+index 0000000..1eec6a0
+--- /dev/null
++++ b/frontend/src/pages/JarvisPage.tsx
+@@ -0,0 +1,370 @@
++import { useCallback, useEffect, useRef, useState } from 'react';
++import { streamChat } from '../lib/sse';
++import { useAppStore } from '../lib/store';
++
++type Mode = 'idle' | 'listening' | 'thinking' | 'speaking';
++
++type Msg = { role: 'user' | 'assistant'; content: string };
++
++const SYSTEM_PROMPT =
++  'Eres Jarvis, un asistente personal. Responde en español, de forma breve y natural, ' +
++  'como si hablaras en voz alta. Nada de markdown ni listas largas.';
++
++const MODE_LABEL: Record<Mode, string> = {
++  idle: 'Pulsa el orbe o la barra espaciadora para hablar',
++  listening: 'Te escucho…',
++  thinking: 'Pensando…',
++  speaking: 'Hablando…',
++};
++
++// Minimal typing for the Web Speech API (not in lib.dom for all TS versions).
++type Recognition = {
++  lang: string;
++  interimResults: boolean;
++  continuous: boolean;
++  start: () => void;
++  stop: () => void;
++  abort: () => void;
++  onresult: ((e: { resultIndex: number; results: ArrayLike<ArrayLike<{ transcript: string }> & { isFinal: boolean }> }) => void) | null;
++  onend: (() => void) | null;
++  onerror: ((e: { error: string }) => void) | null;
++};
++
++function getRecognitionCtor(): (new () => Recognition) | null {
++  const w = window as unknown as Record<string, unknown>;
++  return (w.SpeechRecognition || w.webkitSpeechRecognition || null) as (new () => Recognition) | null;
++}
++
++function pickSpanishVoice(): SpeechSynthesisVoice | null {
++  const voices = window.speechSynthesis?.getVoices() ?? [];
++  return (
++    voices.find((v) => v.lang.startsWith('es') && /google|natural|neural/i.test(v.name)) ||
++    voices.find((v) => v.lang.startsWith('es')) ||
++    null
++  );
++}
++
++export function JarvisPage() {
++  const selectedModel = useAppStore((s) => s.selectedModel);
++  const [mode, setMode] = useState<Mode>('idle');
++  const [heard, setHeard] = useState('');
++  const [reply, setReply] = useState('');
++  const [error, setError] = useState<string | null>(null);
++  const [typed, setTyped] = useState('');
++
++  const modeRef = useRef<Mode>('idle');
++  const historyRef = useRef<Msg[]>([]);
++  const canvasRef = useRef<HTMLCanvasElement>(null);
++  const levelRef = useRef(0); // 0..1 audio level driving the orb
++  const analyserRef = useRef<AnalyserNode | null>(null);
++  const micStreamRef = useRef<MediaStream | null>(null);
++  const audioCtxRef = useRef<AudioContext | null>(null);
++  const recogRef = useRef<Recognition | null>(null);
++  const abortRef = useRef<AbortController | null>(null);
++
++  const setModeBoth = (m: Mode) => {
++    modeRef.current = m;
++    setMode(m);
++  };
++
++  // ---------- Orb animation ----------
++  useEffect(() => {
++    const canvas = canvasRef.current;
++    if (!canvas) return;
++    const ctx = canvas.getContext('2d')!;
++    let raf = 0;
++    let t = 0;
++    let smooth = 0;
++    const buf = new Uint8Array(256);
++
++    const draw = () => {
++      raf = requestAnimationFrame(draw);
++      const dpr = window.devicePixelRatio || 1;
++      const size = Math.min(canvas.clientWidth, canvas.clientHeight);
++      if (canvas.width !== size * dpr) {
++        canvas.width = size * dpr;
++        canvas.height = size * dpr;
++      }
++      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
++      const m = modeRef.current;
++      t += 1 / 60;
++
++      // Target level per mode
++      let target = 0.05 + Math.sin(t * 1.5) * 0.03; // idle breathing
++      if (m === 'listening' && analyserRef.current) {
++        analyserRef.current.getByteTimeDomainData(buf);
++        let sum = 0;
++        for (let i = 0; i < buf.length; i++) {
++          const v = (buf[i] - 128) / 128;
++          sum += v * v;
++        }
++        target = Math.min(1, Math.sqrt(sum / buf.length) * 5);
++      } else if (m === 'speaking') {
++        target = levelRef.current;
++        levelRef.current *= 0.93; // decay between word boundaries
++        target = Math.max(target, 0.25 + 0.2 * Math.abs(Math.sin(t * 9)));
++      } else if (m === 'thinking') {
++        target = 0.15;
++      }
++      smooth += (target - smooth) * 0.2;
++
++      const cx = size / 2;
++      const cy = size / 2;
++      const base = size * 0.22;
++      ctx.clearRect(0, 0, size, size);
++
++      const hue = m === 'listening' ? 190 : m === 'thinking' ? 265 : m === 'speaking' ? 175 : 200;
++
++      // Outer glow
++      const glow = ctx.createRadialGradient(cx, cy, base * 0.4, cx, cy, base * (2.2 + smooth));
++      glow.addColorStop(0, `hsla(${hue}, 100%, 60%, ${0.35 + smooth * 0.4})`);
++      glow.addColorStop(1, `hsla(${hue}, 100%, 50%, 0)`);
++      ctx.fillStyle = glow;
++      ctx.fillRect(0, 0, size, size);
++
++      // Rotating rings
++      ctx.lineWidth = 1.5;
++      for (let r = 0; r < 3; r++) {
++        const radius = base * (1.45 + r * 0.22) + smooth * base * 0.25;
++        const start = t * (0.6 + r * 0.35) * (r % 2 ? -1 : 1);
++        ctx.strokeStyle = `hsla(${hue}, 100%, 70%, ${0.5 - r * 0.12})`;
++        ctx.beginPath();
++        ctx.arc(cx, cy, radius, start, start + Math.PI * (m === 'thinking' ? 0.6 : 1.3));
++        ctx.stroke();
++      }
++
++      // Wobbly core blob
++      const points = 96;
++      ctx.beginPath();
++      for (let i = 0; i <= points; i++) {
++        const a = (i / points) * Math.PI * 2;
++        const wob =
++          Math.sin(a * 3 + t * 2) * 0.06 +
++          Math.sin(a * 5 - t * 3) * 0.04 * (1 + smooth * 4) +
++          Math.sin(a * 8 + t * 5) * 0.03 * smooth * 3;
++        const rr = base * (1 + smooth * 0.35 + wob);
++        const x = cx + Math.cos(a) * rr;
++        const y = cy + Math.sin(a) * rr;
++        if (i === 0) ctx.moveTo(x, y);
++        else ctx.lineTo(x, y);
++      }
++      const core = ctx.createRadialGradient(cx - base * 0.3, cy - base * 0.3, base * 0.1, cx, cy, base * 1.4);
++      core.addColorStop(0, `hsla(${hue}, 100%, 85%, 1)`);
++      core.addColorStop(0.5, `hsla(${hue}, 95%, 55%, 0.95)`);
++      core.addColorStop(1, `hsla(${hue + 30}, 90%, 30%, 0.9)`);
++      ctx.fillStyle = core;
++      ctx.fill();
++    };
++    draw();
++    return () => cancelAnimationFrame(raf);
++  }, []);
++
++  // ---------- Mic level (for the orb while listening) ----------
++  const openMic = async () => {
++    if (micStreamRef.current) return;
++    const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
++    const ac = new AudioContext();
++    const src = ac.createMediaStreamSource(stream);
++    const an = ac.createAnalyser();
++    an.fftSize = 512;
++    src.connect(an);
++    micStreamRef.current = stream;
++    audioCtxRef.current = ac;
++    analyserRef.current = an;
++  };
++
++  const closeMic = () => {
++    micStreamRef.current?.getTracks().forEach((tr) => tr.stop());
++    micStreamRef.current = null;
++    audioCtxRef.current?.close().catch(() => {});
++    audioCtxRef.current = null;
++    analyserRef.current = null;
++  };
++
++  useEffect(
++    () => () => {
++      closeMic();
++      recogRef.current?.abort();
++      abortRef.current?.abort();
++      window.speechSynthesis?.cancel();
++    },
++    [],
++  );
++
++  // ---------- Speak ----------
++  const speak = (text: string) =>
++    new Promise<void>((resolve) => {
++      if (!window.speechSynthesis || !text.trim()) return resolve();
++      const u = new SpeechSynthesisUtterance(text);
++      u.lang = 'es-ES';
++      const v = pickSpanishVoice();
++      if (v) u.voice = v;
++      u.onboundary = () => {
++        levelRef.current = 0.7 + Math.random() * 0.3;
++      };
++      u.onend = () => resolve();
++      u.onerror = () => resolve();
++      window.speechSynthesis.speak(u);
++    });
++
++  // ---------- Ask the model ----------
++  const ask = useCallback(
++    async (text: string) => {
++      if (!text.trim()) return;
++      setError(null);
++      setHeard(text);
++      setReply('');
++      setModeBoth('thinking');
++      historyRef.current.push({ role: 'user', content: text });
++
++      const ctrl = new AbortController();
++      abortRef.current = ctrl;
++      let full = '';
++      try {
++        for await (const ev of streamChat(
++          {
++            model: selectedModel || 'default',
++            messages: [{ role: 'system', content: SYSTEM_PROMPT }, ...historyRef.current.slice(-12)],
++            stream: true,
++          },
++          ctrl.signal,
++        )) {
++          if (ev.event && ev.event !== 'message') continue;
++          try {
++            const delta = JSON.parse(ev.data).choices?.[0]?.delta?.content;
++            if (delta) {
++              full += delta;
++              setReply(full);
++            }
++          } catch {
++            /* non-JSON keepalive */
++          }
++        }
++      } catch (e) {
++        if (ctrl.signal.aborted) return;
++        setError(e instanceof Error ? e.message : 'No se pudo contactar con Jarvis');
++        setModeBoth('idle');
++        historyRef.current.pop();
++        return;
++      }
++      historyRef.current.push({ role: 'assistant', content: full });
++      setModeBoth('speaking');
++      await speak(full);
++      if (modeRef.current === 'speaking') setModeBoth('idle');
++    },
++    [selectedModel],
++  );
++
++  // ---------- Listen ----------
++  const listen = useCallback(async () => {
++    const Ctor = getRecognitionCtor();
++    if (!Ctor) {
++      setError('Tu navegador no tiene reconocimiento de voz. Usa Chrome o Edge, o escribe abajo.');
++      return;
++    }
++    window.speechSynthesis?.cancel();
++    abortRef.current?.abort();
++    setError(null);
++    try {
++      await openMic();
++    } catch {
++      setError('No hay permiso para usar el micrófono.');
++      return;
++    }
++    const rec = new Ctor();
++    rec.lang = 'es-ES';
++    rec.interimResults = true;
++    rec.continuous = false;
++    let finalText = '';
++    rec.onresult = (e) => {
++      let interim = '';
++      for (let i = e.resultIndex; i < e.results.length; i++) {
++        const r = e.results[i];
++        if (r.isFinal) finalText += r[0].transcript;
++        else interim += r[0].transcript;
++      }
++      setHeard(finalText + interim);
++    };
++    rec.onerror = (e) => {
++      if (e.error !== 'no-speech' && e.error !== 'aborted') setError(`Error de voz: ${e.error}`);
++    };
++    rec.onend = () => {
++      closeMic();
++      recogRef.current = null;
++      if (finalText.trim()) ask(finalText.trim());
++      else if (modeRef.current === 'listening') setModeBoth('idle');
++    };
++    recogRef.current = rec;
++    setHeard('');
++    setReply('');
++    setModeBoth('listening');
++    rec.start();
++  }, [ask]);
++
++  const toggle = useCallback(() => {
++    const m = modeRef.current;
++    if (m === 'listening') {
++      recogRef.current?.stop();
++    } else if (m === 'speaking' || m === 'thinking') {
++      window.speechSynthesis?.cancel();
++      abortRef.current?.abort();
++      setModeBoth('idle');
++    } else {
++      listen();
++    }
++  }, [listen]);
++
++  // Spacebar shortcut (ignored while typing in the text box)
++  useEffect(() => {
++    const onKey = (e: KeyboardEvent) => {
++      if (e.code !== 'Space' || (e.target as HTMLElement)?.tagName === 'INPUT') return;
++      e.preventDefault();
++      toggle();
++    };
++    window.addEventListener('keydown', onKey);
++    return () => window.removeEventListener('keydown', onKey);
++  }, [toggle]);
++
++  return (
++    <div
++      className="flex h-full w-full flex-col items-center justify-between overflow-hidden px-4 py-6"
++      style={{ background: 'radial-gradient(ellipse at center, #0b1a2e 0%, #03070d 75%)', color: '#d6f3ff' }}
++    >
++      <div className="text-xs tracking-[0.4em] opacity-60">J · A · R · V · I · S</div>
++
++      <button
++        onClick={toggle}
++        aria-label={mode === 'listening' ? 'Dejar de escuchar' : 'Hablar con Jarvis'}
++        className="relative aspect-square w-full max-w-[min(70vh,520px)] cursor-pointer border-0 bg-transparent p-0 outline-none"
++      >
++        <canvas ref={canvasRef} className="h-full w-full" />
++      </button>
++
++      <div className="flex w-full max-w-2xl flex-col items-center gap-3 text-center">
++        <div className="text-sm opacity-70">{MODE_LABEL[mode]}</div>
++        {heard && <div className="text-base opacity-80">“{heard}”</div>}
++        {reply && <div className="max-h-40 overflow-y-auto text-lg leading-relaxed">{reply}</div>}
++        {error && <div className="text-sm text-red-400">{error}</div>}
++        <form
++          className="mt-2 flex w-full gap-2"
++          onSubmit={(e) => {
++            e.preventDefault();
++            const v = typed;
++            setTyped('');
++            ask(v);
++          }}
++        >
++          <input
++            value={typed}
++            onChange={(e) => setTyped(e.target.value)}
++            placeholder="…o escríbele aquí"
++            className="flex-1 rounded-full border border-cyan-500/30 bg-black/40 px-4 py-2 text-sm text-cyan-50 outline-none placeholder:text-cyan-200/40 focus:border-cyan-400"
++          />
++          <button type="submit" className="rounded-full bg-cyan-500/80 px-4 py-2 text-sm font-medium text-black hover:bg-cyan-400">
++            Enviar
++          </button>
++        </form>
++      </div>
++    </div>
++  );
++}
