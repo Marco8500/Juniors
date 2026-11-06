@@ -36,9 +36,13 @@ bash juniors/jarvis/abrir.sh
 
 ## Cómo se usa
 
+**Manos libres:** al abrir la pestaña, Jarvis se queda escuchando. Di **«Hey Jarvis»** (u «Oye Jarvis»)
+seguido de lo que quieras, por ejemplo: *«Hey Jarvis, cuéntame un chiste»*. La primera vez el navegador
+te pedirá permiso para el micrófono. Puedes apagarlo con el botón **🎙️ Manos libres**.
+
 | Acción | Qué hace el orbe |
 |---|---|
-| Pulsa el orbe o la **barra espaciadora** y habla | Azul claro, crece con tu voz |
+| Dices «Hey Jarvis…» (o pulsas el orbe) | Azul claro, crece con tu voz |
 | Suelta / te callas | Morado: está pensando |
 | Te responde en voz alta | Turquesa, vibra con cada palabra |
 | Pulsa otra vez mientras habla | Lo interrumpe |

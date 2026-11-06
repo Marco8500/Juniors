@@ -40,10 +40,10 @@ index a4a5b67..ed6d7b8 100644
      { path: '/data-sources', icon: Database, label: 'Data Sources' },
 diff --git a/frontend/src/pages/JarvisPage.tsx b/frontend/src/pages/JarvisPage.tsx
 new file mode 100644
-index 0000000..1eec6a0
+index 0000000..d1d4ab7
 --- /dev/null
 +++ b/frontend/src/pages/JarvisPage.tsx
-@@ -0,0 +1,370 @@
+@@ -0,0 +1,471 @@
 +import { useCallback, useEffect, useRef, useState } from 'react';
 +import { streamChat } from '../lib/sse';
 +import { useAppStore } from '../lib/store';
@@ -57,7 +57,7 @@ index 0000000..1eec6a0
 +  'como si hablaras en voz alta. Nada de markdown ni listas largas.';
 +
 +const MODE_LABEL: Record<Mode, string> = {
-+  idle: 'Pulsa el orbe o la barra espaciadora para hablar',
++  idle: 'Pulsa el orbe para hablar',
 +  listening: 'Te escucho…',
 +  thinking: 'Pensando…',
 +  speaking: 'Hablando…',
@@ -88,6 +88,18 @@ index 0000000..1eec6a0
 +    voices.find((v) => v.lang.startsWith('es')) ||
 +    null
 +  );
++}
++
++// Detecta "Hey Jarvis" (y variantes que el reconocedor suele escribir: "oye jarvis", "yarvis", "jarbis"...)
++const WAKE = /\b(?:(?:hey|oye|ey|ei|hei|hola)\s+)?(?:j|y|h|ll)?ar(?:v|b)is\b/;
++export function findWake(raw: string): { rest: string } | null {
++  // Quitamos tildes sin cambiar la longitud del texto, para poder cortar en la misma posición
++  const txt = raw.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
++  const plain = raw.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
++  const m = txt.match(WAKE);
++  if (!m) return null;
++  const rest = plain.slice((m.index ?? 0) + m[0].length).replace(/^[\s,.:;!?¡¿]+/, '').trim();
++  return { rest };
 +}
 +
 +export function JarvisPage() {
@@ -301,82 +313,169 @@ index 0000000..1eec6a0
 +    [selectedModel],
 +  );
 +
-+  // ---------- Listen ----------
-+  const listen = useCallback(async () => {
++  // ---------- Hands-free: wake word "Hey Jarvis" ----------
++  // phase: off (manos libres apagado) | waiting (espera "Hey Jarvis") | command (escucha la orden) | busy (piensa/habla)
++  const phaseRef = useRef<'off' | 'waiting' | 'command' | 'busy'>('off');
++  const [handsFree, setHandsFree] = useState(true);
++  const handsFreeRef = useRef(true);
++  const cmdTimerRef = useRef<number | null>(null);
++
++  const clearCmdTimer = () => {
++    if (cmdTimerRef.current) window.clearTimeout(cmdTimerRef.current);
++    cmdTimerRef.current = null;
++  };
++
++  const backToWaiting = () => {
++    clearCmdTimer();
++    closeMic();
++    phaseRef.current = handsFreeRef.current ? 'waiting' : 'off';
++    if (modeRef.current === 'listening') setModeBoth('idle');
++  };
++
++  const startRecognizer = useCallback(() => {
 +    const Ctor = getRecognitionCtor();
 +    if (!Ctor) {
 +      setError('Tu navegador no tiene reconocimiento de voz. Usa Chrome o Edge, o escribe abajo.');
 +      return;
 +    }
-+    window.speechSynthesis?.cancel();
-+    abortRef.current?.abort();
-+    setError(null);
-+    try {
-+      await openMic();
-+    } catch {
-+      setError('No hay permiso para usar el micrófono.');
-+      return;
-+    }
++    if (recogRef.current) return;
 +    const rec = new Ctor();
 +    rec.lang = 'es-ES';
 +    rec.interimResults = true;
-+    rec.continuous = false;
-+    let finalText = '';
++    rec.continuous = true;
++
++    const runCommand = async (cmd: string) => {
++      clearCmdTimer();
++      phaseRef.current = 'busy';
++      recogRef.current = null;
++      rec.abort(); // que no se oiga a sí mismo mientras habla
++      closeMic();
++      await ask(cmd);
++      phaseRef.current = handsFreeRef.current ? 'waiting' : 'off';
++      if (handsFreeRef.current) window.setTimeout(startRecognizer, 300);
++    };
++
 +    rec.onresult = (e) => {
-+      let interim = '';
 +      for (let i = e.resultIndex; i < e.results.length; i++) {
 +        const r = e.results[i];
-+        if (r.isFinal) finalText += r[0].transcript;
-+        else interim += r[0].transcript;
++        const raw = r[0].transcript;
++        const found = findWake(raw);
++        if (phaseRef.current === 'waiting') {
++          if (!found) continue;
++          // Ha oído "Hey Jarvis"
++          phaseRef.current = 'command';
++          window.speechSynthesis?.cancel();
++          setReply('');
++          setHeard('');
++          setModeBoth('listening');
++          openMic().catch(() => {});
++          clearCmdTimer();
++          cmdTimerRef.current = window.setTimeout(backToWaiting, 8000);
++          if (r.isFinal && found.rest.length > 2) {
++            runCommand(found.rest);
++            return;
++          }
++        } else if (phaseRef.current === 'command') {
++          const rest = found ? found.rest : raw.trim();
++          setHeard(rest);
++          clearCmdTimer();
++          cmdTimerRef.current = window.setTimeout(backToWaiting, 8000);
++          if (r.isFinal && rest.length > 1) {
++            runCommand(rest);
++            return;
++          }
++        }
 +      }
-+      setHeard(finalText + interim);
 +    };
 +    rec.onerror = (e) => {
-+      if (e.error !== 'no-speech' && e.error !== 'aborted') setError(`Error de voz: ${e.error}`);
++      if (e.error === 'not-allowed' || e.error === 'service-not-allowed') {
++        setError('Necesito permiso para el micrófono. Pulsa el orbe para activarlo.');
++        handsFreeRef.current = false;
++        setHandsFree(false);
++        phaseRef.current = 'off';
++      }
 +    };
 +    rec.onend = () => {
-+      closeMic();
-+      recogRef.current = null;
-+      if (finalText.trim()) ask(finalText.trim());
-+      else if (modeRef.current === 'listening') setModeBoth('idle');
++      if (recogRef.current === rec) recogRef.current = null;
++      // Chrome corta el reconocimiento cada cierto tiempo: lo reiniciamos
++      if (handsFreeRef.current && (phaseRef.current === 'waiting' || phaseRef.current === 'command')) {
++        window.setTimeout(startRecognizer, 250);
++      }
 +    };
 +    recogRef.current = rec;
-+    setHeard('');
-+    setReply('');
-+    setModeBoth('listening');
-+    rec.start();
-+  }, [ask]);
++    if (phaseRef.current === 'off') phaseRef.current = 'waiting';
++    try {
++      rec.start();
++    } catch {
++      recogRef.current = null;
++    }
++  }, [ask]); // eslint-disable-line react-hooks/exhaustive-deps
 +
++  const setHandsFreeBoth = useCallback(
++    (on: boolean) => {
++      handsFreeRef.current = on;
++      setHandsFree(on);
++      if (on) {
++        setError(null);
++        if (phaseRef.current === 'off') phaseRef.current = 'waiting';
++        startRecognizer();
++      } else {
++        phaseRef.current = 'off';
++        clearCmdTimer();
++        recogRef.current?.abort();
++        recogRef.current = null;
++        closeMic();
++        if (modeRef.current === 'listening') setModeBoth('idle');
++      }
++    },
++    [startRecognizer],
++  );
++
++  // Arranca escuchando "Hey Jarvis" al abrir la pestaña
++  useEffect(() => {
++    setHandsFreeBoth(true);
++    return () => {
++      handsFreeRef.current = false;
++      clearCmdTimer();
++    };
++  }, []); // eslint-disable-line react-hooks/exhaustive-deps
++
++  // Pulsar el orbe: interrumpe si está hablando; si no, escucha una orden sin decir "Hey Jarvis"
 +  const toggle = useCallback(() => {
 +    const m = modeRef.current;
-+    if (m === 'listening') {
-+      recogRef.current?.stop();
-+    } else if (m === 'speaking' || m === 'thinking') {
++    if (m === 'speaking' || m === 'thinking') {
 +      window.speechSynthesis?.cancel();
 +      abortRef.current?.abort();
 +      setModeBoth('idle');
-+    } else {
-+      listen();
++      return;
 +    }
-+  }, [listen]);
-+
-+  // Spacebar shortcut (ignored while typing in the text box)
-+  useEffect(() => {
-+    const onKey = (e: KeyboardEvent) => {
-+      if (e.code !== 'Space' || (e.target as HTMLElement)?.tagName === 'INPUT') return;
-+      e.preventDefault();
-+      toggle();
-+    };
-+    window.addEventListener('keydown', onKey);
-+    return () => window.removeEventListener('keydown', onKey);
-+  }, [toggle]);
++    if (!handsFreeRef.current) setHandsFreeBoth(true);
++    phaseRef.current = 'command';
++    setHeard('');
++    setReply('');
++    setModeBoth('listening');
++    openMic().catch(() => {});
++    clearCmdTimer();
++    cmdTimerRef.current = window.setTimeout(backToWaiting, 8000);
++    startRecognizer();
++  }, [setHandsFreeBoth, startRecognizer]); // eslint-disable-line react-hooks/exhaustive-deps
 +
 +  return (
 +    <div
 +      className="flex h-full w-full flex-col items-center justify-between overflow-hidden px-4 py-6"
 +      style={{ background: 'radial-gradient(ellipse at center, #0b1a2e 0%, #03070d 75%)', color: '#d6f3ff' }}
 +    >
-+      <div className="text-xs tracking-[0.4em] opacity-60">J · A · R · V · I · S</div>
++      <div className="flex w-full max-w-2xl items-center justify-between">
++        <span className="w-32" />
++        <div className="text-xs tracking-[0.4em] opacity-60">J · A · R · V · I · S</div>
++        <button
++          onClick={() => setHandsFreeBoth(!handsFree)}
++          aria-pressed={handsFree}
++          className="w-32 rounded-full border border-cyan-500/30 px-3 py-1 text-xs hover:border-cyan-400"
++        >
++          {handsFree ? '🎙️ Manos libres' : '🔇 Manos libres'}
++        </button>
++      </div>
 +
 +      <button
 +        onClick={toggle}
@@ -387,7 +486,9 @@ index 0000000..1eec6a0
 +      </button>
 +
 +      <div className="flex w-full max-w-2xl flex-col items-center gap-3 text-center">
-+        <div className="text-sm opacity-70">{MODE_LABEL[mode]}</div>
++        <div className="text-sm opacity-70">
++          {mode === 'idle' && handsFree ? 'Di «Hey Jarvis» para hablarme' : MODE_LABEL[mode]}
++        </div>
 +        {heard && <div className="text-base opacity-80">“{heard}”</div>}
 +        {reply && <div className="max-h-40 overflow-y-auto text-lg leading-relaxed">{reply}</div>}
 +        {error && <div className="text-sm text-red-400">{error}</div>}
