@@ -322,12 +322,31 @@
     const ctl = (chatCtl = new AbortController());
     saidEl.textContent = "«" + text + "»";
     replyEl.textContent = "";
+    showActions(null);
     setMode("thinking");
     turns.push({ role: "user", content: text });
     while (turns.length > 12) turns.shift();
 
     // En iPhone, esperar un poco tras soltar el micrófono hace que la voz salga por el altavoz
     await new Promise((r) => setTimeout(r, isIOS ? 350 : 80));
+
+    // Primero, ¿es algo que sé hacer yo (tiempo, calendario, alarmas...)?
+    let skill = null;
+    try {
+      skill = await window.JarvisSkills?.handle(text);
+    } catch (e) {
+      skill = { say: e.message || "No he podido hacerlo. Prueba otra vez." };
+    }
+    if (ctl.signal.aborted) return;
+    if (skill) {
+      replyEl.textContent = skill.say;
+      showActions(skill.actions);
+      turns.push({ role: "assistant", content: skill.say });
+      (skill.say.match(/[^.!?]+[.!?]*/g) || [skill.say]).forEach((x) => queueSpeech(x));
+      await speakQueue;
+      if (chatCtl === ctl) { chatCtl = null; afterTurn(); }
+      return;
+    }
 
     let full = "", pending = "";
     try {
@@ -357,6 +376,52 @@
       afterTurn();
     }
   }
+
+  // ---------------- Botones de acción (abrir apps, WhatsApp, Google...) ----------------
+  const actionsEl = $("actions");
+  function showActions(list) {
+    actionsEl.innerHTML = "";
+    actionsEl.hidden = !list || !list.length;
+    (list || []).forEach((a) => {
+      let el;
+      if (a.href) {
+        el = document.createElement("a");
+        el.href = a.href;
+        if (/^https?:/.test(a.href)) { el.target = "_blank"; el.rel = "noopener"; }
+      } else {
+        el = document.createElement("button");
+        el.type = "button";
+        el.onclick = async () => {
+          if (a.run === "help") { $("help").hidden = false; return; }
+          if (a.run === "google") {
+            try {
+              const retry = await window.JarvisSkills.connectAndRetry();
+              showActions(null);
+              if (retry) ask(retry);
+            } catch (e) { showErr(e.message); }
+          }
+        };
+      }
+      el.className = "act" + (a.primary ? " primary" : "");
+      el.textContent = a.label;
+      actionsEl.appendChild(el);
+    });
+  }
+
+  // Avisos que llegan solos (temporizador, alarma)
+  window.JarvisSkills?.setAnnouncer(async (text) => {
+    // espera a que termine lo que esté haciendo
+    for (let i = 0; i < 40 && (mode === "thinking" || mode === "speaking"); i++) await new Promise((r) => setTimeout(r, 500));
+    stopWake();
+    saidEl.textContent = "";
+    replyEl.textContent = text;
+    showActions([{ label: "Parar alarma", run: "stop", primary: true }]);
+    actionsEl.lastChild.onclick = () => { window.JarvisSkills.stopRing(); showActions(null); replyEl.textContent = "Alarma parada."; };
+    setMode("speaking");
+    (text.match(/[^.!?]+[.!?]*/g) || [text]).forEach((x) => queueSpeech(x));
+    await speakQueue;
+    afterTurn();
+  });
 
   function afterTurn() {
     if (!active) { setMode("off"); return; }
@@ -496,6 +561,7 @@
 
   $("startBtn").onclick = async () => {
     unlockAudio();
+    window.JarvisSkills?.unlockAudio();
     active = true;
     $("start").hidden = true;
     keepAwake();
@@ -522,6 +588,7 @@
   $("orb").onclick = () => {
     if (!active) { $("startBtn").click(); return; }
     unlockAudio();
+    if (window.JarvisSkills?.stopRing()) { showActions(null); replyEl.textContent = "Alarma parada."; }
     if (mode === "speaking" || mode === "thinking") {
       chatCtl?.abort();
       chatCtl = null;
@@ -565,6 +632,8 @@
     paintKey();
     $("keyMsg").textContent = "Clave borrada. Vuelvo a usar el cerebro interno.";
   };
+
+  window.JarvisSkills?.setupSettings();
 
   // ---------------- App instalable ----------------
   if ("serviceWorker" in navigator) {

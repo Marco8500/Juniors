@@ -54,6 +54,18 @@ canvas { width: 100%; height: 100%; display: block; }
 .small { font-size: 13px; }
 .card a { color: var(--accent); }
 .card { max-height: 88vh; overflow-y: auto; }
+.actions { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; max-width: 600px; }
+.act {
+  display: inline-flex; align-items: center; min-height: 44px; padding: 0 18px; border-radius: 999px;
+  border: 1px solid var(--line); background: rgba(54,214,255,.08); color: var(--fg); text-decoration: none;
+  font: 600 15px var(--display); letter-spacing: .03em; cursor: pointer;
+}
+.act.primary { background: var(--accent); color: var(--accent-ink); border-color: transparent; box-shadow: 0 0 24px rgba(54,214,255,.35); }
+textarea {
+  width: 100%; min-height: 80px; background: rgba(0,0,0,.45); border: 1px solid var(--line); border-radius: 12px;
+  color: var(--fg); font: 14px var(--body); padding: 10px 12px; resize: vertical; -webkit-user-select: text; user-select: text;
+}
+.card code { color: var(--fg); background: rgba(0,0,0,.4); padding: 1px 6px; border-radius: 6px; font-size: 13px; word-break: break-all; }
 .err { color: var(--warn); font-size: 14px; text-align: center; max-width: 600px; }
 form { width: 100%; max-width: 640px; display: flex; gap: 8px; }
 input {
@@ -101,6 +113,7 @@ input::placeholder { color: var(--muted); }
   <div class="status" id="status">Toca «Activar» para empezar</div>
   <div class="said" id="said"></div>
   <div class="reply" id="reply" aria-live="polite"></div>
+  <div class="actions" id="actions" hidden></div>
   <div class="err" id="err" hidden></div>
   <div class="brain" id="brain" hidden></div>
 
@@ -138,12 +151,41 @@ input::placeholder { color: var(--muted); }
     </div>
     <button class="link" id="keyDelete" type="button" hidden>Borrar clave</button>
     <p class="small" id="keyMsg" aria-live="polite"></p>
+    <h3>Qué le puedes pedir</h3>
+    <p class="small">«¿Qué tiempo hace mañana?» · «Pon un temporizador de 10 minutos» · «Pon una alarma a las 7 y media» · «Apunta pan y huevos a la lista» · «¿Qué hay en la lista?» · «¿Cuánto es 25 por 4?» · «¿Quién fue Cervantes?» · «Abre Instagram» · «Pon Bad Bunny en Spotify» · «¿Cómo llego a la Puerta del Sol?» · «Manda un WhatsApp a Ana diciendo que llego tarde» · «¿Qué tengo hoy?» · «Hoy a las 5 tengo comida, ponlo en el calendario» · «¿Tengo correos?»</p>
+
+    <h3>Conectar Google (Calendar y Gmail)</h3>
+    <p class="small">Gratis. Solo una vez, unos 5 minutos desde el ordenador o el móvil:</p>
+    <ol class="small">
+      <li>Entra en <a href="https://console.cloud.google.com/projectcreate" target="_blank" rel="noopener">console.cloud.google.com</a> con tu cuenta de Google y crea un proyecto llamado «Jarvis».</li>
+      <li>Activa estas dos APIs (botón «Habilitar»): <a href="https://console.cloud.google.com/apis/library/calendar-json.googleapis.com" target="_blank" rel="noopener">Google Calendar API</a> y <a href="https://console.cloud.google.com/apis/library/gmail.googleapis.com" target="_blank" rel="noopener">Gmail API</a>.</li>
+      <li>Ve a <a href="https://console.cloud.google.com/auth/overview" target="_blank" rel="noopener">Google Auth Platform</a> → «Empezar». Nombre: Jarvis, tu correo, público «Externo». Después, en «Público», añade tu correo como <b>usuario de prueba</b>.</li>
+      <li>En <a href="https://console.cloud.google.com/auth/clients" target="_blank" rel="noopener">Clientes</a> → «Crear cliente» → tipo «Aplicación web». En «Orígenes de JavaScript autorizados» pon: <code id="gOrigin">https://marco8500.github.io</code></li>
+      <li>Copia el «ID de cliente» (acaba en <code>.apps.googleusercontent.com</code>), pégalo aquí y toca «Conectar Google». Si Google avisa de que la app no está verificada, pulsa «Continuar» (la app es tuya).</li>
+    </ol>
+    <input id="gClient" type="text" autocomplete="off" placeholder="ID de cliente de Google" aria-label="ID de cliente de Google">
+    <div class="keyrow">
+      <button class="send" id="gConnect" type="button" style="padding:10px 18px">Conectar Google</button>
+      <span class="small" id="gStatus" style="align-self:center;color:var(--muted)"></span>
+    </div>
+    <p class="small" id="gMsg" aria-live="polite"></p>
+    <p class="small">El permiso de Google dura una hora. Cuando caduque, Jarvis te mostrará un botón para renovarlo con un toque.</p>
+
+    <h3>Tu ciudad (para el tiempo)</h3>
+    <input id="cityInput" type="text" autocomplete="off" placeholder="Por ejemplo: Madrid" aria-label="Tu ciudad">
+
+    <h3>Contactos (WhatsApp y llamadas)</h3>
+    <p class="small">Uno por línea, así: <code>Ana: 612345678</code>. Si no está aquí, WhatsApp te dejará elegir el contacto.</p>
+    <textarea id="contactsInput" placeholder="Mamá: 600111222&#10;Ana: 612345678" aria-label="Contactos"></textarea>
+    <p class="small">WhatsApp no deja leer tus mensajes a ninguna app. Jarvis te los deja preparados para enviar.</p>
+
     <h3>Si no te oye o no suena</h3>
     <p>Comprueba que el volumen multimedia está alto y que el móvil no está en silencio. En iPhone usa Safari; en Android, Chrome. El micrófono solo escucha con la app abierta y la pantalla encendida.</p>
     <button class="big" id="helpClose" type="button" style="padding:12px 20px;font-size:16px">Entendido</button>
   </div>
 </div>
 
+<script src="skills.js"></script>
 <script src="app.js"></script>
 </body>
 </html>
