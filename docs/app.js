@@ -165,6 +165,153 @@
     speakQueue = Promise.resolve();
   }
 
+  // ---------------- Cerebros disponibles ----------------
+  // 1) Clave gratuita de Google Gemini (si la has puesto en Ayuda) → el más listo
+  // 2) En Netlify: /api/chat (Claude a través del AI Gateway)
+  // 3) Por defecto: un modelo que se ejecuta dentro del propio móvil (WebLLM), gratis y sin claves
+  const SYSTEM =
+    "Eres Jarvis, un asistente personal. Hablas en español de España, con tono cercano, seguro y con un punto de humor. " +
+    "Tus respuestas se leen en voz alta: frases cortas, como mucho 3 o 4 frases, sin markdown, listas, emojis ni símbolos. " +
+    "Responde siempre en español.";
+  const systemNow = () => SYSTEM + " Ahora mismo es " +
+    new Date().toLocaleString("es-ES", { dateStyle: "full", timeStyle: "short" }) + ".";
+
+  const getKey = () => { try { return localStorage.getItem("jarvis-gemini-key") || ""; } catch (e) { return ""; } };
+  const onNetlify = /netlify\.app$/.test(location.hostname);
+
+  async function brainReply(history, signal, onChunk) {
+    const key = getKey();
+    if (key) return geminiReply(key, history, signal, onChunk);
+    if (onNetlify) return netlifyReply(history, signal, onChunk);
+    return localReply(history, signal, onChunk);
+  }
+
+  async function geminiReply(key, history, signal, onChunk) {
+    const res = await fetch(
+      "https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:streamGenerateContent?alt=sse",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "x-goog-api-key": key },
+        body: JSON.stringify({
+          systemInstruction: { parts: [{ text: systemNow() }] },
+          contents: history.map((m) => ({ role: m.role === "assistant" ? "model" : "user", parts: [{ text: m.content }] })),
+          generationConfig: { maxOutputTokens: 400, temperature: 0.8 },
+        }),
+        signal,
+      },
+    );
+    if (res.status === 400 || res.status === 403) throw new Error("La clave de Gemini no es válida. Revísala en Ayuda.");
+    if (res.status === 429) throw new Error("Has llegado al límite gratis de Gemini por ahora. Espera un poco.");
+    if (!res.ok || !res.body) throw new Error("Gemini no responde ahora mismo. Prueba otra vez.");
+    const reader = res.body.getReader();
+    const dec = new TextDecoder();
+    let buf = "";
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      buf += dec.decode(value, { stream: true });
+      const lines = buf.split("\n");
+      buf = lines.pop();
+      for (const line of lines) {
+        if (!line.startsWith("data:")) continue;
+        try {
+          const d = JSON.parse(line.slice(5));
+          const txt = (d.candidates?.[0]?.content?.parts || []).map((p) => p.text || "").join("");
+          if (txt) onChunk(txt);
+        } catch (e) {}
+      }
+    }
+  }
+
+  async function netlifyReply(history, signal, onChunk) {
+    const res = await fetch("/api/chat", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ messages: history }),
+      signal,
+    });
+    if (res.status === 429) throw new Error("Demasiados mensajes seguidos. Espera un minuto.");
+    if (!res.ok || !res.body) throw new Error((await res.text().catch(() => "")) || "No he podido conectar con mi cerebro.");
+    const reader = res.body.getReader();
+    const dec = new TextDecoder();
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      onChunk(dec.decode(value, { stream: true }));
+    }
+  }
+
+  // --- Modelo dentro del móvil ---
+  const WEBLLM_URL = "https://cdn.jsdelivr.net/npm/@mlc-ai/web-llm@0.2.86/+esm";
+  let enginePromise = null;
+  let engineReady = false;
+
+  async function pickLocalModel() {
+    const adapter = await navigator.gpu?.requestAdapter?.();
+    if (!adapter) return null;
+    const f16 = adapter.features?.has?.("shader-f16");
+    return f16 ? "Qwen2.5-1.5B-Instruct-q4f16_1-MLC" : "Qwen2.5-1.5B-Instruct-q4f32_1-MLC";
+  }
+
+  function loadLocalBrain() {
+    if (enginePromise) return enginePromise;
+    enginePromise = (async () => {
+      if (!("gpu" in navigator)) throw new Error("NO_WEBGPU");
+      const model = await pickLocalModel();
+      if (!model) throw new Error("NO_WEBGPU");
+      const webllm = await import(WEBLLM_URL);
+      const engine = await webllm.CreateMLCEngine(model, {
+        initProgressCallback: (p) => {
+          if (engineReady) return;
+          const pct = Math.round((p.progress || 0) * 100);
+          brainStatus(pct < 100 ? `Preparando mi cerebro… ${pct}%` : "Cerebro listo");
+        },
+      });
+      engineReady = true;
+      brainStatus("");
+      return engine;
+    })();
+    enginePromise.catch(() => { enginePromise = null; });
+    return enginePromise;
+  }
+
+  async function localReply(history, signal, onChunk) {
+    let engine;
+    try {
+      engine = await loadLocalBrain();
+    } catch (e) {
+      throw new Error(
+        e.message === "NO_WEBGPU"
+          ? "Este móvil no puede ejecutar el cerebro interno. Pon una clave gratuita de Gemini en Ayuda (tarda 1 minuto)."
+          : "No he podido preparar mi cerebro interno. Revisa la conexión o pon una clave gratuita de Gemini en Ayuda.",
+      );
+    }
+    const onAbort = () => { try { engine.interruptGenerate(); } catch (e) {} };
+    signal.addEventListener("abort", onAbort, { once: true });
+    try {
+      const stream = await engine.chat.completions.create({
+        messages: [{ role: "system", content: systemNow() }, ...history.slice(-8)],
+        stream: true,
+        max_tokens: 220,
+        temperature: 0.7,
+      });
+      for await (const part of stream) {
+        if (signal.aborted) break;
+        const d = part.choices?.[0]?.delta?.content;
+        if (d) onChunk(d);
+      }
+    } finally {
+      signal.removeEventListener("abort", onAbort);
+    }
+  }
+
+  let brainMsg = "";
+  function brainStatus(msg) {
+    brainMsg = msg;
+    const el = $("brain");
+    if (el) { el.textContent = msg; el.hidden = !msg; }
+  }
+
   // ---------------- Cerebro ----------------
   async function ask(text) {
     text = text.trim();
@@ -184,20 +331,7 @@
 
     let full = "", pending = "";
     try {
-      const res = await fetch("/api/chat", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ messages: turns }),
-        signal: ctl.signal,
-      });
-      if (res.status === 429) throw new Error("Demasiados mensajes seguidos. Espera un minuto.");
-      if (!res.ok || !res.body) throw new Error((await res.text().catch(() => "")) || "No he podido conectar con mi cerebro.");
-      const reader = res.body.getReader();
-      const dec = new TextDecoder();
-      while (true) {
-        const { done, value } = await reader.read();
-        if (done) break;
-        const chunk = dec.decode(value, { stream: true });
+      await brainReply(turns, ctl.signal, (chunk) => {
         full += chunk;
         pending += chunk;
         replyEl.textContent = full.replace(/\n?\[ERROR\].*/s, "");
@@ -208,7 +342,7 @@
           queueSpeech(m[1]);
           pending = pending.slice(m[0].length);
         }
-      }
+      });
       if (full.includes("[ERROR]")) throw new Error(full.split("[ERROR]")[1].trim());
       queueSpeech(pending);
       turns.push({ role: "assistant", content: full.trim() });
@@ -357,6 +491,7 @@
     paintVoice();
   };
   $("helpBtn").onclick = () => { $("help").hidden = false; };
+  $("startHelp").onclick = () => { $("help").hidden = false; };
   $("helpClose").onclick = () => { $("help").hidden = true; };
 
   $("startBtn").onclick = async () => {
@@ -379,6 +514,7 @@
       showErr("Necesito permiso para el micrófono para oír «Ey Jarvis». También puedes escribirle abajo.");
     }
     replyEl.textContent = "Estoy listo. Di «Ey Jarvis» cuando quieras.";
+    if (!getKey() && !onNetlify) loadLocalBrain().catch(() => {});
     setMode("waiting");
     startWake();
   };
@@ -406,6 +542,29 @@
     input.blur();
     ask(v);
   });
+
+  // ---------------- Ajustes: clave de Gemini ----------------
+  const keyInput = $("geminiKey");
+  function paintKey() {
+    const k = getKey();
+    keyInput.value = "";
+    keyInput.placeholder = k ? "Clave guardada ✔ (escribe otra para cambiarla)" : "Pega aquí tu clave (empieza por AIza…)";
+    $("keyDelete").hidden = !k;
+    $("brainName").textContent = k ? "Gemini (Google)" : onNetlify ? "Claude (Netlify)" : "Qwen, dentro de tu móvil";
+  }
+  paintKey();
+  $("keySave").onclick = () => {
+    const v = keyInput.value.trim();
+    if (!v) return;
+    try { localStorage.setItem("jarvis-gemini-key", v); } catch (e) {}
+    paintKey();
+    $("keyMsg").textContent = "Guardada. Jarvis usará Gemini a partir de ahora.";
+  };
+  $("keyDelete").onclick = () => {
+    try { localStorage.removeItem("jarvis-gemini-key"); } catch (e) {}
+    paintKey();
+    $("keyMsg").textContent = "Clave borrada. Vuelvo a usar el cerebro interno.";
+  };
 
   // ---------------- App instalable ----------------
   if ("serviceWorker" in navigator) {

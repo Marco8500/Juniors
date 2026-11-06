@@ -48,6 +48,12 @@ canvas { width: 100%; height: 100%; display: block; }
 .status b { color: var(--accent); font-weight: 600; }
 .said { color: var(--muted); font-size: 15px; text-align: center; max-width: 600px; min-height: 1.3em; }
 .reply { font-size: 19px; line-height: 1.5; text-align: center; max-width: 600px; max-height: 26vh; overflow-y: auto; min-height: 1.5em; -webkit-user-select: text; user-select: text; }
+.brain { color: var(--accent); font: 500 13px var(--display); letter-spacing: .06em; text-align: center; }
+.keyrow { display: flex; gap: 8px; }
+.keyrow input { padding: 10px 14px; font-size: 14px; }
+.small { font-size: 13px; }
+.card a { color: var(--accent); }
+.card { max-height: 88vh; overflow-y: auto; }
 .err { color: var(--warn); font-size: 14px; text-align: center; max-width: 600px; }
 form { width: 100%; max-width: 640px; display: flex; gap: 8px; }
 input {
@@ -96,6 +102,7 @@ input::placeholder { color: var(--muted); }
   <div class="said" id="said"></div>
   <div class="reply" id="reply" aria-live="polite"></div>
   <div class="err" id="err" hidden></div>
+  <div class="brain" id="brain" hidden></div>
 
   <form id="form" autocomplete="off">
     <input id="msg" placeholder="…o escríbele aquí" enterkeyhint="send" aria-label="Mensaje para Jarvis">
@@ -108,6 +115,7 @@ input::placeholder { color: var(--muted); }
   <p>Toca el botón y después di <b>«Ey Jarvis»</b> seguido de lo que quieras. Te contestará en voz alta.</p>
   <button class="big" id="startBtn" type="button">Activar Jarvis</button>
   <p style="font-size:13px">El móvil pedirá permiso para el micrófono: pulsa «Permitir».</p>
+  <button class="link" id="startHelp" type="button">Ayuda y ajustes del cerebro</button>
 </div>
 
 <div class="overlay" id="help" hidden>
@@ -120,6 +128,16 @@ input::placeholder { color: var(--muted); }
       <li><b>Android (Chrome):</b> menú ⋮ → «Instalar aplicación» o «Añadir a pantalla de inicio».</li>
       <li><b>iPhone (Safari):</b> botón Compartir → «Añadir a pantalla de inicio».</li>
     </ol>
+    <h3>Cerebro</h3>
+    <p>Ahora piensa con: <b id="brainName" style="color:var(--fg)">…</b></p>
+    <p class="small">Por defecto Jarvis piensa <b>dentro de tu móvil</b>, gratis y sin enviar nada a nadie. La primera vez descarga su cerebro (unos 1,1 GB; mejor con wifi) y luego va mucho más rápido.</p>
+    <p class="small">¿Lo quieres más listo? Consigue una clave <b>gratis</b> de Google Gemini en <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener">aistudio.google.com/apikey</a> (botón «Create API key») y pégala aquí. Se guarda solo en este móvil.</p>
+    <div class="keyrow">
+      <input id="geminiKey" type="password" autocomplete="off" aria-label="Clave de Gemini">
+      <button class="send" id="keySave" type="button">Guardar</button>
+    </div>
+    <button class="link" id="keyDelete" type="button" hidden>Borrar clave</button>
+    <p class="small" id="keyMsg" aria-live="polite"></p>
     <h3>Si no te oye o no suena</h3>
     <p>Comprueba que el volumen multimedia está alto y que el móvil no está en silencio. En iPhone usa Safari; en Android, Chrome. El micrófono solo escucha con la app abierta y la pantalla encendida.</p>
     <button class="big" id="helpClose" type="button" style="padding:12px 20px;font-size:16px">Entendido</button>

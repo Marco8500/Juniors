@@ -1,5 +1,5 @@
 // Service worker mínimo: hace la app instalable y abre aunque la red vaya lenta.
-const CACHE = "jarvis-v1";
+const CACHE = "jarvis-v2";
 const SHELL = ["./", "index.html", "app.js", "manifest.webmanifest", "icons/icon-192.png", "icons/icon-512.png"];
 self.addEventListener("install", (e) => {
   e.waitUntil(caches.open(CACHE).then((c) => c.addAll(SHELL)).then(() => self.skipWaiting()));
