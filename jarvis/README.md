@@ -20,7 +20,7 @@ con [Ollama]. No hace falta ninguna clave de API.
 ## Instalar (una sola vez)
 
 ```bash
-git clone https://github.com/marco8500/juniors.git
+git clone -b ccr-f5800559-bf9129 https://github.com/marco8500/juniors.git
 cd juniors/jarvis
 bash instalar.sh
 ```
