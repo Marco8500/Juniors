@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+<title>Jarvis</title>
+<meta name="description" content="Asistente de voz: di «Ey Jarvis» y te contesta en voz alta.">
+<meta name="theme-color" content="#03070d">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Jarvis">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;600&family=IBM+Plex+Sans:wght@400;500&display=swap">
+<style>
+:root {
+  --bg: #03070d; --bg-2: #0b1a2e; --fg: #d6f3ff; --muted: #7fa7bd;
+  --accent: #36d6ff; --accent-ink: #021018; --line: rgba(54,214,255,.28); --warn: #ff9a9a;
+  --display: "Chakra Petch", "Segoe UI", system-ui, sans-serif;
+  --body: "IBM Plex Sans", system-ui, -apple-system, sans-serif;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+html, body { height: 100%; margin: 0; }
+body {
+  background: radial-gradient(ellipse at 50% 35%, var(--bg-2) 0%, var(--bg) 70%) var(--bg);
+  color: var(--fg); font: 16px/1.45 var(--body); overflow: hidden;
+  -webkit-user-select: none; user-select: none;
+}
+.app {
+  height: 100%; display: flex; flex-direction: column; align-items: center; gap: 6px;
+  padding: calc(env(safe-area-inset-top, 0px) + 10px) max(16px, env(safe-area-inset-right, 0px))
+           calc(env(safe-area-inset-bottom, 0px) + 10px) max(16px, env(safe-area-inset-left, 0px));
+}
+.top { width: 100%; max-width: 640px; display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.brand { font: 400 12px var(--display); letter-spacing: .45em; color: var(--muted); }
+.pill {
+  background: transparent; border: 1px solid var(--line); color: var(--fg); border-radius: 999px;
+  height: 34px; padding: 0 12px; font: 500 13px var(--body); cursor: pointer; white-space: nowrap;
+}
+.pill[aria-pressed="false"] { color: var(--muted); }
+button:focus-visible, input:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.orb { flex: 1 1 auto; min-height: 0; width: 100%; max-width: 480px; background: none; border: 0; padding: 0; cursor: pointer; }
+canvas { width: 100%; height: 100%; display: block; }
+.status { font: 600 13px var(--display); letter-spacing: .14em; text-transform: uppercase; color: var(--muted); text-align: center; }
+.status b { color: var(--accent); font-weight: 600; }
+.said { color: var(--muted); font-size: 15px; text-align: center; max-width: 600px; min-height: 1.3em; }
+.reply { font-size: 19px; line-height: 1.5; text-align: center; max-width: 600px; max-height: 26vh; overflow-y: auto; min-height: 1.5em; -webkit-user-select: text; user-select: text; }
+.err { color: var(--warn); font-size: 14px; text-align: center; max-width: 600px; }
+form { width: 100%; max-width: 640px; display: flex; gap: 8px; }
+input {
+  flex: 1; min-width: 0; background: rgba(0,0,0,.45); border: 1px solid var(--line); border-radius: 999px;
+  color: var(--fg); font: 16px var(--body); padding: 12px 16px; -webkit-user-select: text; user-select: text;
+}
+input::placeholder { color: var(--muted); }
+.send { background: var(--accent); color: var(--accent-ink); border: 0; border-radius: 999px; padding: 0 18px; font: 600 15px var(--display); cursor: pointer; }
+.overlay {
+  position: fixed; inset: 0; z-index: 10; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 18px;
+  background: rgba(3,7,13,.88); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); text-align: center;
+  padding: 24px max(24px, env(safe-area-inset-right, 0px)) 24px max(24px, env(safe-area-inset-left, 0px));
+}
+.overlay h1 { font: 600 28px var(--display); letter-spacing: .2em; margin: 0; }
+.overlay p { margin: 0; color: var(--muted); max-width: 340px; }
+.big {
+  background: var(--accent); color: var(--accent-ink); border: 0; border-radius: 999px;
+  padding: 16px 30px; font: 600 18px var(--display); letter-spacing: .06em; cursor: pointer;
+  box-shadow: 0 0 40px rgba(54,214,255,.45);
+}
+.link { background: none; border: 0; color: var(--muted); text-decoration: underline; font: 14px var(--body); cursor: pointer; }
+.card {
+  max-width: 440px; background: var(--bg-2); border: 1px solid var(--line); border-radius: 16px; padding: 20px;
+  display: flex; flex-direction: column; gap: 10px; text-align: left; font-size: 15px; -webkit-user-select: text; user-select: text;
+}
+.card h2 { font: 600 18px var(--display); margin: 0; }
+.card h3 { font: 600 13px var(--display); margin: 6px 0 0; color: var(--accent); letter-spacing: .1em; text-transform: uppercase; }
+.card ol { margin: 0; padding-left: 20px; }
+.card p { margin: 0; color: var(--muted); }
+[hidden] { display: none !important; }
+</style>
+</head>
+<body>
+<div class="app">
+  <div class="top">
+    <button class="pill" id="voiceBtn" type="button" aria-pressed="true">🔊 Voz</button>
+    <span class="brand">J·A·R·V·I·S</span>
+    <button class="pill" id="helpBtn" type="button">Ayuda</button>
+  </div>
+
+  <button class="orb" id="orb" type="button" aria-label="Hablar con Jarvis">
+    <canvas id="cv"></canvas>
+  </button>
+
+  <div class="status" id="status">Toca «Activar» para empezar</div>
+  <div class="said" id="said"></div>
+  <div class="reply" id="reply" aria-live="polite"></div>
+  <div class="err" id="err" hidden></div>
+
+  <form id="form" autocomplete="off">
+    <input id="msg" placeholder="…o escríbele aquí" enterkeyhint="send" aria-label="Mensaje para Jarvis">
+    <button class="send" type="submit">Enviar</button>
+  </form>
+</div>
+
+<div class="overlay" id="start">
+  <h1>JARVIS</h1>
+  <p>Toca el botón y después di <b>«Ey Jarvis»</b> seguido de lo que quieras. Te contestará en voz alta.</p>
+  <button class="big" id="startBtn" type="button">Activar Jarvis</button>
+  <p style="font-size:13px">El móvil pedirá permiso para el micrófono: pulsa «Permitir».</p>
+</div>
+
+<div class="overlay" id="help" hidden>
+  <div class="card" role="dialog" aria-labelledby="helpTitle">
+    <h2 id="helpTitle">Cómo usar Jarvis</h2>
+    <h3>Hablarle</h3>
+    <p>Di «Ey Jarvis, …» con la app abierta. También puedes tocar el orbe y hablar directamente. Si está hablando, toca el orbe para que se calle.</p>
+    <h3>Ponerlo en la pantalla de inicio</h3>
+    <ol>
+      <li><b>Android (Chrome):</b> menú ⋮ → «Instalar aplicación» o «Añadir a pantalla de inicio».</li>
+      <li><b>iPhone (Safari):</b> botón Compartir → «Añadir a pantalla de inicio».</li>
+    </ol>
+    <h3>Si no te oye o no suena</h3>
+    <p>Comprueba que el volumen multimedia está alto y que el móvil no está en silencio. En iPhone usa Safari; en Android, Chrome. El micrófono solo escucha con la app abierta y la pantalla encendida.</p>
+    <button class="big" id="helpClose" type="button" style="padding:12px 20px;font-size:16px">Entendido</button>
+  </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
